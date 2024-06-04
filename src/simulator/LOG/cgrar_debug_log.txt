@@ -1,0 +1,754 @@
+PE[0] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[0]) 
+PE[1] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[7]) 
+PE[2] |                 IMM(1) ImmR[0] 
+PE[2] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 SRA  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[3] |                 IMM(4608) ImmR[0] 
+PE[3] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[5] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[6] |                 IMM(172827072) ImmR[0] 
+PE[6] |  Start_TimeStamp:15| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_down)  INY(pe_left)  INZ(ImmR[0])  OutDir(pe_right) 
+PE[7] |  Start_TimeStamp:16| Iteration:11943936 | II: 1 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[8] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[7])  OutDir(pe_up) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[3])  INY(pe_down)  INZ(ImmR[0])  OutDir(pe_right)  OutDir(GR[6]) 
+PE[10] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 NOT  INX(pe_left)  OutDir(pe_right) 
+PE[11] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 AND  INX(pe_left)  INY(pe_down)  OutDir(pe_right)  OutDir(GR[5]) 
+PE[12] |                 IMM(125051328) ImmR[0] 
+PE[12] |                 IMM(131023296) ImmR[1] 
+PE[12] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[1])  INZ(ImmR[0])  OutDir(pe_up) 
+PE[13] |                 IMM(2) ImmR[0] 
+PE[13] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[14] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 OR  INX(pe_down)  INY(GR[4])  OutDir(pe_up) 
+PE[15] |  Start_TimeStamp:15| Iteration:11943936 | II: 1 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[16] |                 IMM(1) ImmR[0] 
+PE[16] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 AND  INX(GR[2])  INY(ImmR[0])  OutDir(pe_right) 
+PE[17] |                 IMM(0) ImmR[0] 
+PE[17] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up)  OutDir(pe_right) 
+PE[18] |                 IMM(1) ImmR[0] 
+PE[18] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_down)  INY(ImmR[0])  INZ(pe_left)  OutDir(pe_right) 
+PE[19] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 NOT  INX(pe_left)  OutDir(pe_up) 
+PE[20] |  Start_TimeStamp:5| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[2]) 
+PE[21] |                 IMM(1) ImmR[0] 
+PE[21] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SRA  INX(GR[0])  INY(ImmR[0])  OutDir(pe_up) 
+PE[22] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_up) 
+PE[23] |                 IMM(0) ImmR[0] 
+PE[23] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[24] |                 IMM(1) ImmR[0] 
+PE[24] |  Start_TimeStamp:6| Iteration:11943936 | II: 1 AND  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[25] |                 IMM(0) ImmR[0] 
+PE[25] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[3]) 
+PE[26] |                 IMM(1) ImmR[0] 
+PE[26] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 XOR  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[27] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(pe_right) 
+PE[28] |  Start_TimeStamp:4| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(pe_up) 
+PE[29] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[4]) 
+PE[30] |                 IMM(2) ImmR[0] 
+PE[30] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(GR[0])  INY(ImmR[0])  OutDir(pe_right) 
+PE[31] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_up) 
+PE[32] |                 IMM(0) ImmR[0] 
+PE[32] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[32] |  Start_TimeStamp:6| Iteration:11943935 | II: 1 SADD  INX(LR[0])  INY(pe_right)  OutDir(pe_up)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[33] |  Start_TimeStamp:4| Iteration:11943936 | II: 1 AND  INX(pe_down)  INY(pe_right)  OutDir(pe_left) 
+PE[34] |                 IMM(0) ImmR[0] 
+PE[34] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[35] |                 IMM(4608) ImmR[0] 
+PE[35] |  Start_TimeStamp:2| Iteration:11943936 | II: 1 SMOD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left)  OutDir(pe_up) 
+PE[37] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[6])  OutDir(pe_up) 
+PE[38] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[1])  OutDir(pe_right) 
+PE[39] |                 IMM(9216) ImmR[0] 
+PE[39] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[40] |  Start_TimeStamp:6| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_up)  OutDir(pe_down) 
+PE[41] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 NOT  INX(pe_right)  OutDir(pe_up) 
+PE[42] |                 IMM(0) ImmR[0] 
+PE[42] |  Start_TimeStamp:2| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[43] |                 IMM(0) ImmR[0] 
+PE[43] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[43] |                 IMM(1) ImmR[1] 
+PE[43] |  Start_TimeStamp:2| Iteration:11943935 | II: 1 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[48] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_up)  OutDir(pe_right) 
+PE[49] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(pe_right) 
+PE[50] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(GR[1]) 
+PE[0] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_right)  OutDir(GR[0]) 
+PE[1] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[7])  OutDir(pe_left) 
+PE[2] |                 IMM(1) ImmR[0] 
+PE[2] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 SRA  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[3] |                 IMM(4608) ImmR[0] 
+PE[3] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[5] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[6] |                 IMM(172827072) ImmR[0] 
+PE[6] |  Start_TimeStamp:15| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_down)  INY(pe_left)  INZ(ImmR[0])  OutDir(pe_right) 
+PE[7] |  Start_TimeStamp:16| Iteration:11943936 | II: 1 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[8] |                 IMM(1) ImmR[0] 
+PE[8] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 XOR  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(pe_down)  INZ(ImmR[0])  OutDir(pe_right)  OutDir(GR[6]) 
+PE[10] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 NOT  INX(pe_left)  OutDir(pe_right) 
+PE[11] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 AND  INX(pe_left)  INY(pe_down)  OutDir(pe_right)  OutDir(GR[5]) 
+PE[12] |                 IMM(136995264) ImmR[0] 
+PE[12] |                 IMM(142967232) ImmR[1] 
+PE[12] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[1])  INZ(ImmR[0])  OutDir(pe_up) 
+PE[13] |                 IMM(2) ImmR[0] 
+PE[13] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[14] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 OR  INX(pe_down)  INY(GR[4])  OutDir(pe_up) 
+PE[15] |  Start_TimeStamp:15| Iteration:11943936 | II: 1 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[16] |                 IMM(0) ImmR[0] 
+PE[16] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up)  OutDir(GR[2]) 
+PE[17] |                 IMM(0) ImmR[0] 
+PE[17] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up)  OutDir(pe_right) 
+PE[18] |                 IMM(1) ImmR[0] 
+PE[18] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[2])  INY(ImmR[0])  INZ(pe_left)  OutDir(pe_right) 
+PE[19] |  Start_TimeStamp:10| Iteration:11943936 | II: 1 NOT  INX(pe_left)  OutDir(pe_up) 
+PE[20] |  Start_TimeStamp:5| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[3]) 
+PE[21] |                 IMM(1) ImmR[0] 
+PE[21] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SRA  INX(GR[0])  INY(ImmR[0])  OutDir(pe_up) 
+PE[22] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_up) 
+PE[23] |                 IMM(0) ImmR[0] 
+PE[23] |  Start_TimeStamp:14| Iteration:11943936 | II: 1 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[24] |                 IMM(1) ImmR[0] 
+PE[24] |  Start_TimeStamp:6| Iteration:11943936 | II: 1 AND  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[25] |                 IMM(1) ImmR[0] 
+PE[25] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 AND  INX(GR[3])  INY(ImmR[0])  OutDir(pe_up) 
+PE[26] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[7]) 
+PE[27] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(pe_right) 
+PE[28] |  Start_TimeStamp:4| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(pe_up) 
+PE[29] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[4]) 
+PE[30] |                 IMM(2) ImmR[0] 
+PE[30] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(GR[0])  INY(ImmR[0])  OutDir(pe_right) 
+PE[31] |  Start_TimeStamp:13| Iteration:11943936 | II: 1 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_up) 
+PE[32] |                 IMM(0) ImmR[0] 
+PE[32] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[32] |  Start_TimeStamp:6| Iteration:11943935 | II: 1 SADD  INX(LR[0])  INY(pe_right)  OutDir(pe_up)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[33] |  Start_TimeStamp:4| Iteration:11943936 | II: 1 AND  INX(pe_down)  INY(pe_right)  OutDir(pe_left) 
+PE[34] |                 IMM(0) ImmR[0] 
+PE[34] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[35] |                 IMM(4608) ImmR[0] 
+PE[35] |  Start_TimeStamp:2| Iteration:11943936 | II: 1 SMOD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left)  OutDir(pe_up) 
+PE[37] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[6])  OutDir(pe_up) 
+PE[38] |  Start_TimeStamp:11| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(GR[1])  OutDir(pe_right) 
+PE[39] |                 IMM(9216) ImmR[0] 
+PE[39] |  Start_TimeStamp:12| Iteration:11943936 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[40] |  Start_TimeStamp:6| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_up)  OutDir(pe_down) 
+PE[41] |  Start_TimeStamp:3| Iteration:11943936 | II: 1 NOT  INX(pe_right)  OutDir(pe_up) 
+PE[42] |                 IMM(0) ImmR[0] 
+PE[42] |  Start_TimeStamp:2| Iteration:11943936 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[43] |                 IMM(0) ImmR[0] 
+PE[43] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[43] |                 IMM(1) ImmR[1] 
+PE[43] |  Start_TimeStamp:2| Iteration:11943935 | II: 1 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[48] |  Start_TimeStamp:7| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_up)  OutDir(pe_right) 
+PE[49] |  Start_TimeStamp:8| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(pe_right) 
+PE[50] |  Start_TimeStamp:9| Iteration:11943936 | II: 1 ROUTE  route_delay(0) INX(pe_left)  OutDir(GR[1]) 
+PE[0] |  Start_TimeStamp:5| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[1]) 
+PE[0] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[1])  OutDir(GR[1]) 
+PE[1] |                 IMM(0) ImmR[0] 
+PE[1] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_right)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[1] |                 IMM(1) ImmR[1] 
+PE[1] |  Start_TimeStamp:4| Iteration:11943935 | II: 3 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_right)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[2] |                 IMM(4608) ImmR[0] 
+PE[2] |  Start_TimeStamp:2| Iteration:11943936 | II: 3 SMOD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[4]) 
+PE[3] |                 IMM(0) ImmR[0] 
+PE[3] |  Start_TimeStamp:3| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[3] |                 IMM(1) ImmR[1] 
+PE[3] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 AND  INX(GR[2])  INY(ImmR[1])  OutDir(pe_right) 
+PE[4] |                 IMM(0) ImmR[0] 
+PE[4] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[5] |                 IMM(1) ImmR[0] 
+PE[5] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 AND  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[5] |                 IMM(0) ImmR[1] 
+PE[5] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(pe_right)  INZ(ImmR[1])  OutDir(pe_right)  OutDir(GR[0]) 
+PE[6] |                 IMM(0) ImmR[0] 
+PE[6] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_left) 
+PE[6] |                 IMM(172827072) ImmR[1] 
+PE[6] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(pe_right)  INZ(ImmR[1])  OutDir(pe_right) 
+PE[7] |                 IMM(6) ImmR[0] 
+PE[7] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(GR[1])  INY(ImmR[0])  OutDir(pe_down) 
+PE[7] |                 IMM(23887872) ImmR[1] 
+PE[7] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_down)  OutDir(pe_left) 
+PE[7] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:2| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right) 
+PE[10] |  Start_TimeStamp:3| Iteration:11943936 | II: 3 NOT  INX(pe_left)  OutDir(pe_right) 
+PE[11] |  Start_TimeStamp:4| Iteration:11943936 | II: 3 AND  INX(pe_left)  INY(pe_up)  OutDir(pe_right) 
+PE[12] |                 IMM(1) ImmR[0] 
+PE[12] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SRA  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[12] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_right)  OutDir(pe_right) 
+PE[12] |                 IMM(0) ImmR[1] 
+PE[12] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[1])  OutDir(pe_right)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[12] |  Start_TimeStamp:8| Iteration:11943935 | II: 3 SADD  INX(LR[0])  INY(pe_left)  OutDir(pe_right)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[13] |                 IMM(1) ImmR[0] 
+PE[13] |  Start_TimeStamp:6| Iteration:11943936 | II: 3 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[13] |                 IMM(2) ImmR[1] 
+PE[13] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SMUL  INX(pe_left)  INY(ImmR[1])  OutDir(pe_right)  OutDir(pe_left)  OutDir(pe_down)  OutDir(GR[3]) 
+PE[13] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[14] |                 IMM(27648) ImmR[0] 
+PE[14] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[15] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[15] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(pe_left)  INY(pe_up)  OutDir(pe_up)  OutDir(GR[0]) 
+PE[15] |                 IMM(1) ImmR[0] 
+PE[15] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[20] |                 IMM(131023296) ImmR[0] 
+PE[20] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_right)  OutDir(pe_up) 
+PE[20] |                 IMM(2) ImmR[1] 
+PE[20] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 SADD  INX(GR[0])  INY(ImmR[1])  OutDir(pe_right) 
+PE[21] |                 IMM(4608) ImmR[0] 
+PE[21] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right)  OutDir(pe_left)  OutDir(pe_down)  OutDir(GR[1]) 
+PE[21] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_up)  OutDir(pe_right) 
+PE[21] |                 IMM(23887872) ImmR[1] 
+PE[21] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[22] |                 IMM(125051328) ImmR[0] 
+PE[22] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[22] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[22] |                 IMM(172827072) ImmR[1] 
+PE[22] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[0])  INY(pe_left)  INZ(ImmR[1])  OutDir(pe_right) 
+PE[23] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_up)  ADDRESS: INY(pe_left) 
+PE[27] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_right) 
+PE[28] |                 IMM(4) ImmR[0] 
+PE[28] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[29] |                 IMM(136995264) ImmR[0] 
+PE[29] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_up)  OutDir(pe_up) 
+PE[29] |                 IMM(23887872) ImmR[1] 
+PE[29] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[30] |                 IMM(142967232) ImmR[0] 
+PE[30] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(GR[1])  OutDir(pe_down) 
+PE[30] |                 IMM(172827072) ImmR[1] 
+PE[30] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_right)  INY(pe_left)  INZ(ImmR[1])  OutDir(pe_right) 
+PE[31] |  Start_TimeStamp:14| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[31] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_left) 
+PE[38] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SADD  INX(pe_up)  INY(GR[3])  OutDir(pe_right) 
+PE[39] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[0] |                 IMM(4608) ImmR[0] 
+PE[0] |  Start_TimeStamp:2| Iteration:11943936 | II: 2 SMOD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[3]) 
+PE[1] |                 IMM(0) ImmR[0] 
+PE[1] |  Start_TimeStamp:3| Iteration:11943936 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[1] |  Start_TimeStamp:4| Iteration:11943936 | II: 2 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[2]) 
+PE[2] |  Start_TimeStamp:4| Iteration:11943936 | II: 2 AND  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[3] |                 IMM(0) ImmR[0] 
+PE[3] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_right)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[3] |  Start_TimeStamp:7| Iteration:11943935 | II: 2 SADD  INX(LR[0])  INY(pe_left)  OutDir(pe_right)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[4] |                 IMM(1) ImmR[0] 
+PE[4] |  Start_TimeStamp:6| Iteration:11943936 | II: 2 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[5] |                 IMM(4608) ImmR[0] 
+PE[5] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down)  OutDir(GR[1]) 
+PE[5] |                 IMM(4) ImmR[1] 
+PE[5] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 SADD  INX(GR[1])  INY(ImmR[1])  OutDir(pe_down) 
+PE[6] |                 IMM(2) ImmR[0] 
+PE[6] |  Start_TimeStamp:8| Iteration:11943936 | II: 2 SMUL  INX(pe_right)  INY(ImmR[0])  OutDir(pe_down)  OutDir(GR[0]) 
+PE[6] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_down) 
+PE[7] |                 IMM(1) ImmR[0] 
+PE[7] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 SRA  INX(GR[2])  INY(ImmR[0])  OutDir(pe_left) 
+PE[8] |                 IMM(0) ImmR[0] 
+PE[8] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_right)  OutDir(LR[0]) 
+PE[8] |                 IMM(1) ImmR[1] 
+PE[8] |  Start_TimeStamp:3| Iteration:11943935 | II: 2 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_up)  OutDir(pe_right)  OutDir(LR[0]) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:2| Iteration:11943936 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[10] |  Start_TimeStamp:3| Iteration:11943936 | II: 2 NOT  INX(pe_left)  OutDir(pe_up) 
+PE[12] |                 IMM(1) ImmR[0] 
+PE[12] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 AND  INX(GR[3])  INY(ImmR[0])  OutDir(pe_down) 
+PE[13] |                 IMM(125051328) ImmR[0] 
+PE[13] |  Start_TimeStamp:8| Iteration:11943936 | II: 2 SADD  INX(ImmR[0])  INY(pe_up)  OutDir(pe_right) 
+PE[13] |                 IMM(23887872) ImmR[1] 
+PE[13] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 SADD  INX(ImmR[1])  INY(pe_up)  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 SADD  INX(pe_left)  INY(pe_up)  OutDir(pe_right) 
+PE[14] |                 IMM(172827072) ImmR[0] 
+PE[14] |  Start_TimeStamp:12| Iteration:11943936 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_up)  INY(pe_left)  INZ(ImmR[0])  OutDir(pe_right) 
+PE[15] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_down) 
+PE[15] |  Start_TimeStamp:13| Iteration:11943936 | II: 2 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[20] |                 IMM(0) ImmR[0] 
+PE[20] |  Start_TimeStamp:8| Iteration:11943936 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right) 
+PE[21] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 XOR  INX(pe_down)  INY(pe_left)  OutDir(pe_right)  OutDir(GR[0]) 
+PE[21] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_right) 
+PE[22] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[22] |                 IMM(172827072) ImmR[0] 
+PE[22] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(pe_down)  INZ(ImmR[0])  OutDir(pe_right) 
+PE[23] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 STORE  DATA: INX(pe_up)  ADDRESS: INY(pe_left) 
+PE[23] |  Start_TimeStamp:12| Iteration:11943936 | II: 2 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[28] |                 IMM(1) ImmR[0] 
+PE[28] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 AND  INX(GR[2])  INY(ImmR[0])  OutDir(pe_right) 
+PE[29] |                 IMM(0) ImmR[0] 
+PE[29] |  Start_TimeStamp:8| Iteration:11943936 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[29] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 ROUTE  route_delay(0) INX(GR[1])  OutDir(pe_right) 
+PE[30] |                 IMM(23887872) ImmR[0] 
+PE[30] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[30] |                 IMM(136995264) ImmR[1] 
+PE[30] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_up) 
+PE[37] |                 IMM(6) ImmR[0] 
+PE[37] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_right) 
+PE[38] |  Start_TimeStamp:8| Iteration:11943936 | II: 2 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_up)  OutDir(pe_right)  OutDir(GR[1]) 
+PE[39] |                 IMM(2) ImmR[0] 
+PE[39] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[46] |                 IMM(27648) ImmR[0] 
+PE[46] |  Start_TimeStamp:7| Iteration:11943936 | II: 2 SMUL  INX(GR[3])  INY(ImmR[0])  OutDir(pe_up) 
+PE[47] |                 IMM(23887872) ImmR[0] 
+PE[47] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 SADD  INX(ImmR[0])  INY(pe_up)  OutDir(pe_down) 
+PE[53] |                 IMM(131023296) ImmR[0] 
+PE[53] |  Start_TimeStamp:9| Iteration:11943936 | II: 2 SADD  INX(ImmR[0])  INY(GR[1])  OutDir(pe_right) 
+PE[54] |  Start_TimeStamp:10| Iteration:11943936 | II: 2 SADD  INX(pe_left)  INY(GR[0])  OutDir(pe_down) 
+PE[55] |                 IMM(172827072) ImmR[0] 
+PE[55] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[0])  INY(pe_up)  INZ(ImmR[0])  OutDir(pe_down) 
+PE[62] |  Start_TimeStamp:11| Iteration:11943936 | II: 2 LOAD  ADDRESS: INX(pe_up)  OutDir(pe_right) 
+PE[63] |  Start_TimeStamp:12| Iteration:11943936 | II: 2 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_up) 
+PE[0] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[2]) 
+PE[1] |                 IMM(0) ImmR[0] 
+PE[1] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_right)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[1] |                 IMM(1) ImmR[1] 
+PE[1] |  Start_TimeStamp:4| Iteration:11943935 | II: 3 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_right)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[1] |  Start_TimeStamp:3| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(pe_right)  OutDir(GR[1]) 
+PE[2] |                 IMM(4608) ImmR[0] 
+PE[2] |  Start_TimeStamp:2| Iteration:11943936 | II: 3 SMOD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(pe_left) 
+PE[3] |                 IMM(0) ImmR[0] 
+PE[3] |  Start_TimeStamp:3| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[3] |                 IMM(0) ImmR[1] 
+PE[3] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_down)  INY(ImmR[1])  OutDir(pe_right) 
+PE[4] |                 IMM(1) ImmR[0] 
+PE[4] |  Start_TimeStamp:6| Iteration:11943936 | II: 3 AND  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |                 IMM(1) ImmR[1] 
+PE[4] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[1])  INZ(pe_right)  OutDir(pe_right) 
+PE[5] |                 IMM(0) ImmR[0] 
+PE[5] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_left) 
+PE[5] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 NOT  INX(pe_left)  OutDir(pe_right)  OutDir(GR[0]) 
+PE[6] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_right)  OutDir(pe_right)  OutDir(GR[0]) 
+PE[6] |                 IMM(172827072) ImmR[0] 
+PE[6] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(pe_right)  INZ(ImmR[0])  OutDir(pe_right) 
+PE[7] |                 IMM(6) ImmR[0] 
+PE[7] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(GR[1])  INY(ImmR[0])  OutDir(pe_left) 
+PE[7] |                 IMM(23887872) ImmR[1] 
+PE[7] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_left) 
+PE[7] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:2| Iteration:11943936 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right) 
+PE[10] |  Start_TimeStamp:3| Iteration:11943936 | II: 3 NOT  INX(pe_left)  OutDir(pe_right) 
+PE[11] |  Start_TimeStamp:4| Iteration:11943936 | II: 3 AND  INX(pe_left)  INY(pe_up)  OutDir(pe_right) 
+PE[11] |                 IMM(1) ImmR[0] 
+PE[11] |  Start_TimeStamp:6| Iteration:11943936 | II: 3 AND  INX(pe_right)  INY(ImmR[0])  OutDir(pe_up) 
+PE[12] |                 IMM(1) ImmR[0] 
+PE[12] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SRA  INX(GR[1])  INY(ImmR[0])  OutDir(pe_right) 
+PE[12] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_right)  OutDir(pe_right) 
+PE[12] |                 IMM(0) ImmR[1] 
+PE[12] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[1])  OutDir(pe_left)  OutDir(pe_right)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[12] |  Start_TimeStamp:8| Iteration:11943935 | II: 3 SADD  INX(LR[0])  INY(pe_left)  OutDir(pe_left)  OutDir(pe_right)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[13] |                 IMM(1) ImmR[0] 
+PE[13] |  Start_TimeStamp:6| Iteration:11943936 | II: 3 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[13] |                 IMM(2) ImmR[1] 
+PE[13] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SMUL  INX(pe_left)  INY(ImmR[1])  OutDir(pe_right)  OutDir(pe_left)  OutDir(pe_down)  OutDir(GR[3]) 
+PE[13] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[14] |                 IMM(27648) ImmR[0] 
+PE[14] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_up) 
+PE[14] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[15] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[15] |                 IMM(1) ImmR[0] 
+PE[15] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_down) 
+PE[20] |                 IMM(131023296) ImmR[0] 
+PE[20] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_right)  OutDir(pe_up) 
+PE[20] |                 IMM(2) ImmR[1] 
+PE[20] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 SADD  INX(GR[0])  INY(ImmR[1])  OutDir(pe_right) 
+PE[21] |                 IMM(4608) ImmR[0] 
+PE[21] |  Start_TimeStamp:7| Iteration:11943936 | II: 3 SMUL  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right)  OutDir(pe_left)  OutDir(pe_down)  OutDir(GR[2]) 
+PE[21] |  Start_TimeStamp:9| Iteration:11943936 | II: 3 SADD  INX(pe_down)  INY(pe_up)  OutDir(pe_right) 
+PE[21] |                 IMM(23887872) ImmR[1] 
+PE[21] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[22] |                 IMM(125051328) ImmR[0] 
+PE[22] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[22] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[22] |                 IMM(172827072) ImmR[1] 
+PE[22] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[0])  INY(pe_left)  INZ(ImmR[1])  OutDir(pe_right) 
+PE[23] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_up)  ADDRESS: INY(pe_left) 
+PE[27] |  Start_TimeStamp:10| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_right) 
+PE[28] |                 IMM(4) ImmR[0] 
+PE[28] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[29] |                 IMM(136995264) ImmR[0] 
+PE[29] |  Start_TimeStamp:8| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(pe_up)  OutDir(pe_up) 
+PE[29] |                 IMM(23887872) ImmR[1] 
+PE[29] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[30] |                 IMM(142967232) ImmR[0] 
+PE[30] |  Start_TimeStamp:11| Iteration:11943936 | II: 3 SADD  INX(ImmR[0])  INY(GR[2])  OutDir(pe_down) 
+PE[30] |                 IMM(172827072) ImmR[1] 
+PE[30] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_right)  INY(pe_left)  INZ(ImmR[1])  OutDir(pe_right) 
+PE[31] |  Start_TimeStamp:14| Iteration:11943936 | II: 3 STORE  DATA: INX(pe_down)  ADDRESS: INY(pe_left) 
+PE[31] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 ROUTE  route_delay(0) INX(GR[0])  OutDir(pe_left) 
+PE[38] |  Start_TimeStamp:12| Iteration:11943936 | II: 3 SADD  INX(pe_up)  INY(GR[3])  OutDir(pe_right) 
+PE[39] |  Start_TimeStamp:13| Iteration:11943936 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_up) 
+PE[0] |                 IMM(0) ImmR[0] 
+PE[0] |  Start_TimeStamp:3| Iteration:2985984 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[0] |                 IMM(1) ImmR[1] 
+PE[0] |  Start_TimeStamp:7| Iteration:2985984 | II: 3 OR  INX(pe_right)  INY(ImmR[1])  OutDir(pe_right)  OutDir(GR[0]) 
+PE[0] |                 IMM(0) ImmR[2] 
+PE[0] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[2])  OutDir(pe_right)  OutDir(GR[1])  OutDir(LR[0]) 
+PE[0] |  Start_TimeStamp:8| Iteration:2985983 | II: 3 SADD  INX(LR[0])  INY(pe_right)  OutDir(pe_right)  OutDir(GR[1])  OutDir(LR[0]) 
+PE[1] |  Start_TimeStamp:4| Iteration:2985984 | II: 3 AND  INX(pe_down)  INY(pe_left)  OutDir(pe_left) 
+PE[1] |                 IMM(1) ImmR[0] 
+PE[1] |  Start_TimeStamp:6| Iteration:2985984 | II: 3 SL(A/L)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_left)  OutDir(pe_right) 
+PE[1] |                 IMM(2591) ImmR[1] 
+PE[1] |  Start_TimeStamp:8| Iteration:2985984 | II: 3 IF(INX<INY)  RESULT(1/0)|(T/F)  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[2] |  Start_TimeStamp:9| Iteration:2985984 | II: 3 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(GR[1])  INZ(GR[0])  OutDir(pe_right) 
+PE[2] |  Start_TimeStamp:8| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(GR[0])  OutDir(GR[3]) 
+PE[2] |  Start_TimeStamp:7| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(pe_left)  OutDir(GR[1]) 
+PE[3] |                 IMM(1) ImmR[0] 
+PE[3] |  Start_TimeStamp:8| Iteration:2985984 | II: 3 SL(A/L)  INX(GR[0])  INY(ImmR[0])  OutDir(pe_right) 
+PE[3] |                 IMM(27648) ImmR[1] 
+PE[3] |  Start_TimeStamp:10| Iteration:2985984 | II: 3 SMUL  INX(pe_left)  INY(ImmR[1])  OutDir(pe_right) 
+PE[3] |  Start_TimeStamp:6| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[0]) 
+PE[4] |                 IMM(1) ImmR[0] 
+PE[4] |  Start_TimeStamp:9| Iteration:2985984 | II: 3 OR  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:11| Iteration:2985984 | II: 3 SADD  INX(pe_left)  INY(pe_right)  OutDir(pe_right)  OutDir(pe_down)  OutDir(GR[0]) 
+PE[4] |  Start_TimeStamp:7| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(GR[1])  OutDir(GR[2]) 
+PE[5] |                 IMM(6) ImmR[0] 
+PE[5] |  Start_TimeStamp:10| Iteration:2985984 | II: 3 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_left) 
+PE[5] |                 IMM(23887872) ImmR[1] 
+PE[5] |  Start_TimeStamp:12| Iteration:2985984 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[6] |  Start_TimeStamp:13| Iteration:2985984 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right) 
+PE[6] |                 IMM(13824) ImmR[0] 
+PE[6] |  Start_TimeStamp:11| Iteration:2985984 | II: 3 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_down) 
+PE[6] |  Start_TimeStamp:9| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[2]) 
+PE[7] |  Start_TimeStamp:14| Iteration:2985984 | II: 3 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[7] |  Start_TimeStamp:4| Iteration:2985984 | II: 3 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[3]) 
+PE[8] |                 IMM(2304) ImmR[0] 
+PE[8] |  Start_TimeStamp:2| Iteration:2985984 | II: 3 SMOD  INX(pe_right)  INY(ImmR[0])  OutDir(pe_up)  OutDir(GR[2]) 
+PE[9] |  Start_TimeStamp:3| Iteration:2985984 | II: 3 NOT  INX(pe_right)  OutDir(pe_up) 
+PE[9] |                 IMM(0) ImmR[0] 
+PE[9] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_left)  OutDir(pe_right)  OutDir(LR[0]) 
+PE[9] |                 IMM(1) ImmR[1] 
+PE[9] |  Start_TimeStamp:4| Iteration:2985983 | II: 3 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_left)  OutDir(pe_right)  OutDir(LR[0]) 
+PE[10] |                 IMM(0) ImmR[0] 
+PE[10] |  Start_TimeStamp:2| Iteration:2985984 | II: 3 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_left) 
+PE[12] |                 IMM(2) ImmR[0] 
+PE[12] |  Start_TimeStamp:12| Iteration:2985984 | II: 3 SADD  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right) 
+PE[13] |                 IMM(6) ImmR[0] 
+PE[13] |  Start_TimeStamp:11| Iteration:2985984 | II: 3 SMUL  INX(GR[3])  INY(ImmR[0])  OutDir(pe_right) 
+PE[13] |                 IMM(23887872) ImmR[1] 
+PE[13] |  Start_TimeStamp:13| Iteration:2985984 | II: 3 SADD  INX(ImmR[1])  INY(pe_left)  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:12| Iteration:2985984 | II: 3 SADD  INX(pe_up)  INY(pe_left)  OutDir(pe_right)  OutDir(pe_down)  OutDir(GR[1]) 
+PE[14] |  Start_TimeStamp:14| Iteration:2985984 | II: 3 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right) 
+PE[14] |                 IMM(4) ImmR[0] 
+PE[14] |  Start_TimeStamp:13| Iteration:2985984 | II: 3 SADD  INX(GR[0])  INY(ImmR[0])  OutDir(pe_down) 
+PE[15] |                 IMM(95551488) ImmR[0] 
+PE[15] |  Start_TimeStamp:13| Iteration:2985984 | II: 3 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[15] |  Start_TimeStamp:15| Iteration:2985984 | II: 3 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[15] |                 IMM(4) ImmR[1] 
+PE[15] |  Start_TimeStamp:14| Iteration:2985984 | II: 3 SADD  INX(GR[1])  INY(ImmR[1])  OutDir(pe_down) 
+PE[22] |                 IMM(2) ImmR[0] 
+PE[22] |  Start_TimeStamp:13| Iteration:2985984 | II: 3 SADD  INX(pe_up)  INY(ImmR[0])  OutDir(pe_right) 
+PE[22] |                 IMM(23887872) ImmR[1] 
+PE[22] |  Start_TimeStamp:14| Iteration:2985984 | II: 3 SADD  INX(ImmR[1])  INY(pe_up)  OutDir(pe_down) 
+PE[23] |                 IMM(95551488) ImmR[0] 
+PE[23] |  Start_TimeStamp:14| Iteration:2985984 | II: 3 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[23] |                 IMM(95551488) ImmR[1] 
+PE[23] |  Start_TimeStamp:15| Iteration:2985984 | II: 3 SADD  INX(ImmR[1])  INY(pe_up)  OutDir(pe_down) 
+PE[30] |  Start_TimeStamp:15| Iteration:2985984 | II: 3 LOAD  ADDRESS: INX(pe_up)  OutDir(pe_right) 
+PE[31] |  Start_TimeStamp:16| Iteration:2985984 | II: 3 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_up) 
+PE[0] |  Start_TimeStamp:4| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[1]) 
+PE[0] |  Start_TimeStamp:11| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[2]) 
+PE[1] |                 IMM(75) ImmR[0] 
+PE[1] |  Start_TimeStamp:11| Iteration:5971968 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[1] |  Start_TimeStamp:6| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[1])  OutDir(GR[5]) 
+PE[2] |  Start_TimeStamp:12| Iteration:5971968 | II: 2 SADD  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[2] |  Start_TimeStamp:7| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[5]) 
+PE[3] |  Start_TimeStamp:13| Iteration:5971968 | II: 2 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[3] |  Start_TimeStamp:12| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[6])  OutDir(GR[3]) 
+PE[4] |                 IMM(7) ImmR[0] 
+PE[4] |  Start_TimeStamp:14| Iteration:5971968 | II: 2 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[0]) 
+PE[4] |  Start_TimeStamp:9| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(GR[4]) 
+PE[5] |                 IMM(1023) ImmR[0] 
+PE[5] |  Start_TimeStamp:15| Iteration:5971968 | II: 2 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[5] |  Start_TimeStamp:8| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_down) 
+PE[6] |                 IMM(1023) ImmR[0] 
+PE[6] |  Start_TimeStamp:16| Iteration:5971968 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(GR[0])  INZ(ImmR[0])  OutDir(pe_right)  OutDir(GR[2]) 
+PE[6] |                 IMM(148939200) ImmR[1] 
+PE[6] |  Start_TimeStamp:17| Iteration:5971968 | II: 2 SADD  INX(ImmR[1])  INY(GR[1])  OutDir(pe_right) 
+PE[7] |  Start_TimeStamp:17| Iteration:5971968 | II: 2 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[7] |  Start_TimeStamp:18| Iteration:5971968 | II: 2 STORE  DATA: INX(GR[2])  ADDRESS: INY(pe_left) 
+PE[9] |  Start_TimeStamp:10| Iteration:5971968 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[10] |                 IMM(64) ImmR[0] 
+PE[10] |  Start_TimeStamp:11| Iteration:5971968 | II: 2 SADD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[11] |                 IMM(15) ImmR[0] 
+PE[11] |  Start_TimeStamp:12| Iteration:5971968 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[12] |                 IMM(2304) ImmR[0] 
+PE[12] |  Start_TimeStamp:13| Iteration:5971968 | II: 2 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_right) 
+PE[13] |  Start_TimeStamp:14| Iteration:5971968 | II: 2 SADD  INX(pe_left)  INY(GR[3])  OutDir(pe_right) 
+PE[13] |  Start_TimeStamp:9| Iteration:5971968 | II: 2 ROUTE  route_delay(0) INX(pe_up)  OutDir(GR[6]) 
+PE[14] |                 IMM(2) ImmR[0] 
+PE[14] |  Start_TimeStamp:15| Iteration:5971968 | II: 2 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[1]) 
+PE[15] |                 IMM(172827074) ImmR[0] 
+PE[15] |  Start_TimeStamp:16| Iteration:5971968 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[17] |                 IMM(95551488) ImmR[0] 
+PE[17] |  Start_TimeStamp:9| Iteration:5971968 | II: 2 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[18] |                 IMM(38) ImmR[0] 
+PE[18] |  Start_TimeStamp:10| Iteration:5971968 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[19] |  Start_TimeStamp:11| Iteration:5971968 | II: 2 LOAD  ADDRESS: INX(pe_right)  OutDir(pe_up) 
+PE[20] |                 IMM(95551488) ImmR[0] 
+PE[20] |  Start_TimeStamp:10| Iteration:5971968 | II: 2 SADD  INX(ImmR[0])  INY(pe_right)  OutDir(pe_left) 
+PE[21] |                 IMM(4) ImmR[0] 
+PE[21] |  Start_TimeStamp:9| Iteration:5971968 | II: 2 SADD  INX(GR[0])  INY(ImmR[0])  OutDir(pe_left) 
+PE[25] |                 IMM(2) ImmR[0] 
+PE[25] |  Start_TimeStamp:8| Iteration:5971968 | II: 2 SADD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[26] |  Start_TimeStamp:9| Iteration:5971968 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[32] |                 IMM(13824) ImmR[0] 
+PE[32] |  Start_TimeStamp:6| Iteration:5971968 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[33] |  Start_TimeStamp:7| Iteration:5971968 | II: 2 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right)  OutDir(pe_up)  OutDir(GR[0]) 
+PE[34] |                 IMM(95551488) ImmR[0] 
+PE[34] |  Start_TimeStamp:8| Iteration:5971968 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[40] |                 IMM(0) ImmR[0] 
+PE[40] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[40] |  Start_TimeStamp:7| Iteration:5971967 | II: 2 SADD  INX(LR[0])  INY(pe_down)  OutDir(pe_up)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[41] |                 IMM(6) ImmR[0] 
+PE[41] |  Start_TimeStamp:6| Iteration:5971968 | II: 2 SMUL  INX(GR[1])  INY(ImmR[0])  OutDir(pe_up) 
+PE[48] |  Start_TimeStamp:4| Iteration:5971968 | II: 2 AND  INX(pe_down)  INY(pe_right)  OutDir(pe_up) 
+PE[49] |                 IMM(0) ImmR[0] 
+PE[49] |  Start_TimeStamp:3| Iteration:5971968 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[50] |                 IMM(2304) ImmR[0] 
+PE[50] |  Start_TimeStamp:2| Iteration:5971968 | II: 2 SMOD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left)  OutDir(GR[4]) 
+PE[56] |  Start_TimeStamp:3| Iteration:5971968 | II: 2 NOT  INX(pe_right)  OutDir(pe_up) 
+PE[57] |                 IMM(0) ImmR[0] 
+PE[57] |  Start_TimeStamp:2| Iteration:5971968 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[58] |                 IMM(0) ImmR[0] 
+PE[58] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[58] |                 IMM(1) ImmR[1] 
+PE[58] |  Start_TimeStamp:3| Iteration:5971967 | II: 2 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[0] |  Start_TimeStamp:4| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[2]) 
+PE[0] |  Start_TimeStamp:15| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[1]) 
+PE[1] |                 IMM(7) ImmR[0] 
+PE[1] |  Start_TimeStamp:14| Iteration:2985984 | II: 2 SRL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[1]) 
+PE[1] |  Start_TimeStamp:7| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[5]) 
+PE[2] |                 IMM(511) ImmR[0] 
+PE[2] |  Start_TimeStamp:15| Iteration:2985984 | II: 2 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[2] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[5]) 
+PE[3] |                 IMM(511) ImmR[0] 
+PE[3] |  Start_TimeStamp:16| Iteration:2985984 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(GR[1])  INZ(ImmR[0])  OutDir(pe_right)  OutDir(GR[0]) 
+PE[3] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[6])  OutDir(GR[3]) 
+PE[4] |                 IMM(-512) ImmR[0] 
+PE[4] |  Start_TimeStamp:17| Iteration:2985984 | II: 2 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(GR[6]) 
+PE[5] |                 IMM(-512) ImmR[0] 
+PE[5] |  Start_TimeStamp:18| Iteration:2985984 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[0])  INZ(GR[0])  OutDir(pe_right) 
+PE[5] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[7])  OutDir(GR[4]) 
+PE[6] |                 IMM(512) ImmR[0] 
+PE[6] |  Start_TimeStamp:19| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[6] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(pe_right)  OutDir(pe_down) 
+PE[7] |  Start_TimeStamp:20| Iteration:2985984 | II: 2 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[7] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_left) 
+PE[8] |                 IMM(6) ImmR[0] 
+PE[8] |  Start_TimeStamp:12| Iteration:2985984 | II: 2 SL(A/L)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[9] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 SADD  INX(pe_right)  INY(pe_left)  OutDir(pe_up) 
+PE[9] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[6])  OutDir(GR[7]) 
+PE[10] |  Start_TimeStamp:12| Iteration:2985984 | II: 2 SADD  INX(pe_down)  INY(pe_right)  OutDir(pe_left) 
+PE[11] |                 IMM(-42) ImmR[0] 
+PE[11] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left) 
+PE[12] |                 IMM(2304) ImmR[0] 
+PE[12] |  Start_TimeStamp:16| Iteration:2985984 | II: 2 SMUL  INX(GR[3])  INY(ImmR[0])  OutDir(pe_right) 
+PE[13] |  Start_TimeStamp:17| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(GR[1])  OutDir(pe_right) 
+PE[14] |                 IMM(2) ImmR[0] 
+PE[14] |  Start_TimeStamp:18| Iteration:2985984 | II: 2 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(pe_up)  OutDir(GR[6]) 
+PE[15] |                 IMM(178799042) ImmR[0] 
+PE[15] |  Start_TimeStamp:19| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[16] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[17] |                 IMM(-22) ImmR[0] 
+PE[17] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[18] |                 IMM(64) ImmR[0] 
+PE[18] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[19] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[20] |                 IMM(0) ImmR[0] 
+PE[20] |  Start_TimeStamp:3| Iteration:2985984 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_down) 
+PE[21] |                 IMM(2304) ImmR[0] 
+PE[21] |  Start_TimeStamp:2| Iteration:2985984 | II: 2 SMOD  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left)  OutDir(GR[4]) 
+PE[22] |                 IMM(0) ImmR[0] 
+PE[22] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_left)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[22] |                 IMM(1) ImmR[1] 
+PE[22] |  Start_TimeStamp:3| Iteration:2985983 | II: 2 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_left)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[24] |                 IMM(95551488) ImmR[0] 
+PE[24] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[25] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[26] |                 IMM(2) ImmR[0] 
+PE[26] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 SADD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[27] |                 IMM(95551488) ImmR[0] 
+PE[27] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[28] |  Start_TimeStamp:4| Iteration:2985984 | II: 2 AND  INX(pe_right)  INY(pe_up)  OutDir(pe_down) 
+PE[29] |  Start_TimeStamp:3| Iteration:2985984 | II: 2 NOT  INX(pe_right)  OutDir(pe_left) 
+PE[30] |                 IMM(0) ImmR[0] 
+PE[30] |  Start_TimeStamp:2| Iteration:2985984 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_up)  INY(ImmR[0])  OutDir(pe_left) 
+PE[32] |                 IMM(4) ImmR[0] 
+PE[32] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 SADD  INX(GR[0])  INY(ImmR[0])  OutDir(pe_up) 
+PE[33] |                 IMM(95551488) ImmR[0] 
+PE[33] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_right)  OutDir(pe_up) 
+PE[34] |  Start_TimeStamp:7| Iteration:2985984 | II: 2 SADD  INX(pe_right)  INY(pe_down)  OutDir(pe_left)  OutDir(pe_up)  OutDir(GR[0]) 
+PE[35] |                 IMM(13824) ImmR[0] 
+PE[35] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 SMUL  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[36] |                 IMM(0) ImmR[0] 
+PE[36] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_left)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[36] |  Start_TimeStamp:7| Iteration:2985983 | II: 2 SADD  INX(LR[0])  INY(pe_up)  OutDir(pe_left)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[42] |                 IMM(6) ImmR[0] 
+PE[42] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_up) 
+PE[0] |  Start_TimeStamp:4| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[2]) 
+PE[0] |  Start_TimeStamp:15| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[4])  OutDir(GR[1]) 
+PE[1] |                 IMM(7) ImmR[0] 
+PE[1] |  Start_TimeStamp:14| Iteration:2985984 | II: 2 SRL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[1]) 
+PE[1] |  Start_TimeStamp:7| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[5]) 
+PE[2] |                 IMM(511) ImmR[0] 
+PE[2] |  Start_TimeStamp:15| Iteration:2985984 | II: 2 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[2] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[2])  OutDir(GR[5]) 
+PE[3] |                 IMM(511) ImmR[0] 
+PE[3] |  Start_TimeStamp:16| Iteration:2985984 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(GR[1])  INZ(ImmR[0])  OutDir(pe_right)  OutDir(GR[0]) 
+PE[3] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[6])  OutDir(GR[3]) 
+PE[4] |                 IMM(-512) ImmR[0] 
+PE[4] |  Start_TimeStamp:17| Iteration:2985984 | II: 2 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(GR[6]) 
+PE[5] |                 IMM(-512) ImmR[0] 
+PE[5] |  Start_TimeStamp:18| Iteration:2985984 | II: 2 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[0])  INZ(GR[0])  OutDir(pe_right) 
+PE[5] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[7])  OutDir(GR[4]) 
+PE[6] |                 IMM(512) ImmR[0] 
+PE[6] |  Start_TimeStamp:19| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[6] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(pe_right)  OutDir(pe_down) 
+PE[7] |  Start_TimeStamp:20| Iteration:2985984 | II: 2 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[7] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_left) 
+PE[8] |                 IMM(-10) ImmR[0] 
+PE[8] |  Start_TimeStamp:12| Iteration:2985984 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[9] |  Start_TimeStamp:13| Iteration:2985984 | II: 2 SADD  INX(pe_right)  INY(pe_left)  OutDir(pe_up) 
+PE[9] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(GR[6])  OutDir(GR[7]) 
+PE[10] |  Start_TimeStamp:12| Iteration:2985984 | II: 2 SADD  INX(pe_down)  INY(pe_right)  OutDir(pe_left) 
+PE[11] |                 IMM(-54) ImmR[0] 
+PE[11] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left) 
+PE[12] |                 IMM(2304) ImmR[0] 
+PE[12] |  Start_TimeStamp:16| Iteration:2985984 | II: 2 SMUL  INX(GR[3])  INY(ImmR[0])  OutDir(pe_right) 
+PE[13] |  Start_TimeStamp:17| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(GR[1])  OutDir(pe_right) 
+PE[14] |                 IMM(2) ImmR[0] 
+PE[14] |  Start_TimeStamp:18| Iteration:2985984 | II: 2 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[14] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 ROUTE  route_delay(0) INX(pe_up)  OutDir(GR[6]) 
+PE[15] |                 IMM(184771010) ImmR[0] 
+PE[15] |  Start_TimeStamp:19| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[16] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[17] |                 IMM(6) ImmR[0] 
+PE[17] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 SL(A/L)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[18] |                 IMM(64) ImmR[0] 
+PE[18] |  Start_TimeStamp:11| Iteration:2985984 | II: 2 SADD  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[19] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[20] |                 IMM(0) ImmR[0] 
+PE[20] |  Start_TimeStamp:3| Iteration:2985984 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_down) 
+PE[21] |                 IMM(2304) ImmR[0] 
+PE[21] |  Start_TimeStamp:2| Iteration:2985984 | II: 2 SMOD  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left)  OutDir(GR[4]) 
+PE[22] |                 IMM(0) ImmR[0] 
+PE[22] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_left)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[22] |                 IMM(1) ImmR[1] 
+PE[22] |  Start_TimeStamp:3| Iteration:2985983 | II: 2 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_left)  OutDir(pe_down)  OutDir(LR[0]) 
+PE[24] |                 IMM(95551488) ImmR[0] 
+PE[24] |  Start_TimeStamp:10| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[25] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 LOAD  ADDRESS: INX(pe_down)  OutDir(pe_up) 
+PE[26] |                 IMM(2) ImmR[0] 
+PE[26] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 SADD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[27] |                 IMM(95551488) ImmR[0] 
+PE[27] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_up) 
+PE[28] |  Start_TimeStamp:4| Iteration:2985984 | II: 2 AND  INX(pe_right)  INY(pe_up)  OutDir(pe_down) 
+PE[29] |  Start_TimeStamp:3| Iteration:2985984 | II: 2 NOT  INX(pe_right)  OutDir(pe_left) 
+PE[30] |                 IMM(0) ImmR[0] 
+PE[30] |  Start_TimeStamp:2| Iteration:2985984 | II: 2 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_up)  INY(ImmR[0])  OutDir(pe_left) 
+PE[32] |                 IMM(4) ImmR[0] 
+PE[32] |  Start_TimeStamp:9| Iteration:2985984 | II: 2 SADD  INX(GR[0])  INY(ImmR[0])  OutDir(pe_up) 
+PE[33] |                 IMM(95551488) ImmR[0] 
+PE[33] |  Start_TimeStamp:8| Iteration:2985984 | II: 2 SADD  INX(ImmR[0])  INY(pe_right)  OutDir(pe_up) 
+PE[34] |  Start_TimeStamp:7| Iteration:2985984 | II: 2 SADD  INX(pe_right)  INY(pe_down)  OutDir(pe_left)  OutDir(pe_up)  OutDir(GR[0]) 
+PE[35] |                 IMM(13824) ImmR[0] 
+PE[35] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 SMUL  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[36] |                 IMM(0) ImmR[0] 
+PE[36] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_left)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[36] |  Start_TimeStamp:7| Iteration:2985983 | II: 2 SADD  INX(LR[0])  INY(pe_up)  OutDir(pe_left)  OutDir(GR[2])  OutDir(LR[0]) 
+PE[42] |                 IMM(6) ImmR[0] 
+PE[42] |  Start_TimeStamp:6| Iteration:2985984 | II: 2 SMUL  INX(GR[2])  INY(ImmR[0])  OutDir(pe_up) 
+PE[0] |                 IMM(1) ImmR[0] 
+PE[0] |  Start_TimeStamp:6| Iteration:2985984 | II: 1 AND  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[1] |                 IMM(0) ImmR[0] 
+PE[1] |  Start_TimeStamp:7| Iteration:2985984 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[3]) 
+PE[2] |                 IMM(178799042) ImmR[0] 
+PE[2] |                 IMM(184771010) ImmR[1] 
+PE[2] |  Start_TimeStamp:8| Iteration:2985984 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(ImmR[0])  INZ(ImmR[1])  OutDir(pe_right) 
+PE[3] |  Start_TimeStamp:9| Iteration:2985984 | II: 1 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[4] |  Start_TimeStamp:10| Iteration:2985984 | II: 1 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right)  OutDir(GR[0]) 
+PE[5] |                 IMM(1023) ImmR[0] 
+PE[5] |  Start_TimeStamp:11| Iteration:2985984 | II: 1 IF(INX<=INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right) 
+PE[6] |                 IMM(1023) ImmR[0] 
+PE[6] |  Start_TimeStamp:12| Iteration:2985984 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_left)  INY(GR[0])  INZ(ImmR[0])  OutDir(pe_right) 
+PE[7] |  Start_TimeStamp:13| Iteration:2985984 | II: 1 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[8] |  Start_TimeStamp:5| Iteration:2985984 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(pe_up)  OutDir(GR[1]) 
+PE[9] |                 IMM(2304) ImmR[0] 
+PE[9] |  Start_TimeStamp:6| Iteration:2985984 | II: 1 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right) 
+PE[10] |  Start_TimeStamp:7| Iteration:2985984 | II: 1 SADD  INX(pe_left)  INY(GR[1])  OutDir(pe_right) 
+PE[11] |                 IMM(2) ImmR[0] 
+PE[11] |  Start_TimeStamp:8| Iteration:2985984 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[12] |  Start_TimeStamp:9| Iteration:2985984 | II: 1 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[2]) 
+PE[13] |  Start_TimeStamp:7| Iteration:2985984 | II: 1 ROUTE  route_delay(0) INX(GR[1])  OutDir(GR[4]) 
+PE[14] |                 IMM(190742978) ImmR[0] 
+PE[14] |                 IMM(193728962) ImmR[1] 
+PE[14] |  Start_TimeStamp:11| Iteration:2985984 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[2])  INY(ImmR[0])  INZ(ImmR[1])  OutDir(pe_right) 
+PE[15] |  Start_TimeStamp:12| Iteration:2985984 | II: 1 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_up) 
+PE[16] |  Start_TimeStamp:4| Iteration:2985984 | II: 1 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_up) 
+PE[17] |                 IMM(0) ImmR[0] 
+PE[17] |  Start_TimeStamp:5| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(GR[7])  OutDir(LR[0]) 
+PE[17] |  Start_TimeStamp:6| Iteration:2985983 | II: 1 SADD  INX(LR[0])  INY(pe_right)  OutDir(pe_up)  OutDir(GR[7])  OutDir(LR[0]) 
+PE[18] |  Start_TimeStamp:4| Iteration:2985984 | II: 1 AND  INX(pe_down)  INY(pe_right)  OutDir(pe_left) 
+PE[19] |                 IMM(0) ImmR[0] 
+PE[19] |  Start_TimeStamp:3| Iteration:2985984 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[20] |                 IMM(2304) ImmR[0] 
+PE[20] |  Start_TimeStamp:2| Iteration:2985984 | II: 1 SMOD  INX(pe_down)  INY(ImmR[0])  OutDir(pe_left)  OutDir(GR[5]) 
+PE[21] |                 IMM(1152) ImmR[0] 
+PE[21] |  Start_TimeStamp:9| Iteration:2985984 | II: 1 SMUL  INX(GR[6])  INY(ImmR[0])  OutDir(pe_right) 
+PE[22] |  Start_TimeStamp:10| Iteration:2985984 | II: 1 SADD  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[23] |                 IMM(2) ImmR[0] 
+PE[23] |  Start_TimeStamp:11| Iteration:2985984 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[24] |  Start_TimeStamp:7| Iteration:2985984 | II: 1 ROUTE  route_delay(0) INX(GR[7])  OutDir(GR[6]) 
+PE[26] |  Start_TimeStamp:3| Iteration:2985984 | II: 1 NOT  INX(pe_right)  OutDir(pe_up) 
+PE[27] |                 IMM(0) ImmR[0] 
+PE[27] |  Start_TimeStamp:2| Iteration:2985984 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_right)  INY(ImmR[0])  OutDir(pe_left) 
+PE[28] |                 IMM(0) ImmR[0] 
+PE[28] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[28] |                 IMM(1) ImmR[1] 
+PE[28] |  Start_TimeStamp:2| Iteration:2985983 | II: 1 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_up)  OutDir(pe_left)  OutDir(LR[0]) 
+PE[30] |                 IMM(1) ImmR[0] 
+PE[30] |  Start_TimeStamp:9| Iteration:2985984 | II: 1 SRA  INX(GR[4])  INY(ImmR[0])  OutDir(pe_up) 
+PE[0] |  Start_TimeStamp:3| Iteration:5971968 | II: 1 ROUTE  route_delay(0) INX(GR[3])  OutDir(GR[7]) 
+PE[1] |  Start_TimeStamp:6| Iteration:5971968 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[4]) 
+PE[2] |                 IMM(2) ImmR[0] 
+PE[2] |  Start_TimeStamp:3| Iteration:5971968 | II: 1 SRA  INX(GR[3])  INY(ImmR[0])  OutDir(pe_right) 
+PE[3] |                 IMM(2) ImmR[0] 
+PE[3] |  Start_TimeStamp:4| Iteration:5971968 | II: 1 SMUL  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(pe_down) 
+PE[4] |                 IMM(190742978) ImmR[0] 
+PE[4] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 SADD  INX(ImmR[0])  INY(pe_left)  OutDir(pe_down) 
+PE[5] |  Start_TimeStamp:8| Iteration:5971968 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[4])  INY(GR[0])  INZ(pe_down)  OutDir(pe_right) 
+PE[6] |  Start_TimeStamp:9| Iteration:5971968 | II: 1 LOAD  ADDRESS: INX(pe_left)  OutDir(pe_right) 
+PE[7] |  Start_TimeStamp:10| Iteration:5971968 | II: 1 STORE  DATA: INX(pe_left)  ADDRESS: INY(pe_down) 
+PE[8] |  Start_TimeStamp:6| Iteration:5971968 | II: 1 ROUTE  route_delay(0) INX(pe_down)  OutDir(GR[6]) 
+PE[9] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 ROUTE  route_delay(0) INX(GR[5])  OutDir(pe_up) 
+PE[11] |                 IMM(193728962) ImmR[0] 
+PE[11] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 SADD  INX(ImmR[0])  INY(pe_up)  OutDir(pe_right) 
+PE[12] |  Start_TimeStamp:6| Iteration:5971968 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(GR[1])  INY(pe_left)  INZ(pe_up)  OutDir(pe_right) 
+PE[13] |  Start_TimeStamp:7| Iteration:5971968 | II: 1 IF(INX==1)  RESULT(INY/INZ)|(T/F)  INX(pe_down)  INY(pe_right)  INZ(pe_left)  OutDir(pe_up) 
+PE[14] |                 IMM(172827074) ImmR[0] 
+PE[14] |  Start_TimeStamp:6| Iteration:5971968 | II: 1 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_left)  OutDir(GR[0]) 
+PE[15] |                 IMM(113467392) ImmR[0] 
+PE[15] |  Start_TimeStamp:9| Iteration:5971968 | II: 1 SADD  INX(ImmR[0])  INY(pe_down)  OutDir(pe_up) 
+PE[16] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 ROUTE  route_delay(0) INX(GR[7])  OutDir(pe_up) 
+PE[18] |                 IMM(1) ImmR[0] 
+PE[18] |  Start_TimeStamp:3| Iteration:5971968 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_down)  INY(ImmR[0])  OutDir(pe_right)  OutDir(GR[5]) 
+PE[19] |  Start_TimeStamp:4| Iteration:5971968 | II: 1 OR  INX(pe_down)  INY(pe_left)  OutDir(pe_right) 
+PE[20] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 OR  INX(pe_left)  INY(pe_down)  OutDir(pe_right) 
+PE[21] |  Start_TimeStamp:6| Iteration:5971968 | II: 1 NOT  INX(pe_left)  OutDir(pe_up) 
+PE[22] |                 IMM(2) ImmR[0] 
+PE[22] |  Start_TimeStamp:5| Iteration:5971968 | II: 1 SMUL  INX(pe_down)  INY(ImmR[0])  OutDir(pe_up) 
+PE[23] |                 IMM(2) ImmR[0] 
+PE[23] |  Start_TimeStamp:8| Iteration:5971968 | II: 1 SMUL  INX(GR[6])  INY(ImmR[0])  OutDir(pe_up) 
+PE[25] |                 IMM(0) ImmR[0] 
+PE[25] |  Start_TimeStamp:1| Iteration:1 | II: 0 ROUTE  route_delay(0) INX(ImmR[0])  OutDir(pe_right)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[25] |                 IMM(1) ImmR[1] 
+PE[25] |  Start_TimeStamp:2| Iteration:5971967 | II: 1 SADD  INX(LR[0])  INY(ImmR[1])  OutDir(pe_right)  OutDir(GR[3])  OutDir(LR[0]) 
+PE[26] |                 IMM(3) ImmR[0] 
+PE[26] |  Start_TimeStamp:2| Iteration:5971968 | II: 1 AND  INX(pe_left)  INY(ImmR[0])  OutDir(pe_right)  OutDir(pe_up)  OutDir(GR[2]) 
+PE[27] |                 IMM(0) ImmR[0] 
+PE[27] |  Start_TimeStamp:3| Iteration:5971968 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 
+PE[28] |                 IMM(2) ImmR[0] 
+PE[28] |  Start_TimeStamp:4| Iteration:5971968 | II: 1 IF(INX==INY)  RESULT(1/0)|(T/F)  INX(GR[2])  INY(ImmR[0])  OutDir(pe_up)  OutDir(GR[1]) 
+PE[29] |                 IMM(-1) ImmR[0] 
+PE[29] |  Start_TimeStamp:3| Iteration:5971968 | II: 1 SADD  INX(GR[3])  INY(ImmR[0])  OutDir(pe_right) 
+PE[30] |                 IMM(1) ImmR[0] 
+PE[30] |  Start_TimeStamp:4| Iteration:5971968 | II: 1 SRA  INX(pe_left)  INY(ImmR[0])  OutDir(pe_up) 

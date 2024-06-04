@@ -1,0 +1,31 @@
+//../../src/mapper/mapper.out -d './src/TASK D_2.dot' -a './output/TASK D_2.asm' -r './output/TASK D_2.rout.dot' -l 1512 -c '../test_CGRA_design/myADL.json' -g 1 > './output/TASK D_2.map'
+/*add0
+for(i=0;i<360;i++) {
+    finalx[i] = info[i];
+}
+*/
+digraph G {
+    // constant
+    base_finalx                 [opcode=const, val=0];
+    info                        [opcode=const, val=0]; //all address set to 0 
+    int_width                   [opcode=const, val=1]; //using order in array, instead of width
+    // loop add
+    loop_add3[opcode=add];
+    loop_add5[opcode=add];
+    // load
+    load3[opcode=load]; //info[i]
+    // store
+    store1[opcode=store]; //finalx[i]
+//============================================================================================
+    info->loop_add3[operand=0,type=const_base];
+    int_width->loop_add3[operand=1]; 
+
+    base_finalx->loop_add5[operand=0,type=const_base];
+    int_width->loop_add5[operand=1]; 
+//============================================================================================
+    loop_add3->load3[operand=0];        // load info[i]
+
+//============================================================================================
+    loop_add5->store1[operand=0];
+    load3->store1[operand=1];     //store finalx[i]
+}

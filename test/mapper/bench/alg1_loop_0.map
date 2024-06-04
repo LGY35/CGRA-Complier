@@ -1,0 +1,74 @@
+start for for cgra->II = 2
+time cost 0.264471 sec for cgra->II = 2
+start for for cgra->II = 3
+time cost 0.152700 sec for cgra->II = 3
+tot time: 0.423969
+schedule time = 0: loop_add18,
+schedule time = 1: mod0,eq1,
+schedule time = 2: eq0,not0,rout0,
+schedule time = 3: and0,rout1,
+schedule time = 4: loop_add19,rout2,
+schedule time = 5: shl0,rout3,rout13,
+schedule time = 6: or0,rout4,rout8,rout14,
+schedule time = 7: lt0,shl1,rout5,rout9,rout10,rout15,
+schedule time = 8: sel0,or1,rout6,rout16,
+schedule time = 9: mul0,mul1,rout7,rout17,
+schedule time = 10: add1,mul2,mul3,
+schedule time = 11: add2,add3,add6,rout11,
+schedule time = 12: load0,add4,add7,add9,add12,rout12,
+schedule time = 13: store0,load1,add10,add13,add15,
+schedule time = 14: store1,load2,add16,
+schedule time = 15: store2,
+mod0: 1 0 1
+eq0: 2 0 0
+eq1: 1 2 1
+not0: 2 1 1
+and0: 0 1 0
+shl0: 2 1 0
+or0: 0 0 0
+lt0: 1 1 0
+sel0: 2 2 0
+shl1: 1 3 0
+or1: 2 4 0
+mul0: 0 3 0
+mul1: 0 5 0
+add1: 1 4 0
+add2: 2 5 0
+load0: 0 6 0
+mul2: 1 6 0
+mul3: 1 5 1
+add3: 2 6 1
+add4: 0 7 1
+store0: 1 7 0
+add6: 2 4 1
+add7: 0 5 1
+load1: 1 6 1
+add9: 0 6 2
+add10: 1 7 2
+store1: 2 7 1
+add12: 0 6 1
+add13: 1 6 2
+load2: 2 6 3
+add15: 1 7 1
+add16: 2 7 2
+store2: 0 7 3
+loop_add18: 0 1 1
+loop_add19: 1 0 0
+rout0: 2 gr(2)
+rout1: 0 7 0
+rout2: 1 gr(3)
+rout3: 2 3 0
+rout4: 0 gr(0)
+rout5: 1 2 0
+rout6: 2 gr(3)
+rout7: 0 gr(3)
+rout8: 0 2 0
+rout9: 1 gr(1)
+rout10: 1 gr(0)
+rout11: 2 gr(0)
+rout12: 0 gr(1)
+rout13: 2 gr(1)
+rout14: 0 4 0
+rout15: 1 gr(2)
+rout16: 2 6 0
+rout17: 0 gr(2)

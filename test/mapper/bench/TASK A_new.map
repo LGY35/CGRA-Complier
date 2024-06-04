@@ -1,0 +1,54 @@
+time cost 0.002539 sec for cgra->II = 1
+tot time: 0.011325
+schedule time = 0: loop_add0,loop_add1,
+schedule time = 1: load10,add1,
+schedule time = 2: load5,add3,sub0,
+schedule time = 3: loop_add2,load6,sub1,mul0,
+schedule time = 4: load0,add0,sub2,mul1,
+schedule time = 5: loop_add4,load3,add2,mul2,lt0,
+schedule time = 6: load4,load9,add4,select0,
+schedule time = 7: loop_add3,add5,lt1,rout1,rout2,
+schedule time = 8: load7,load8,select1,
+schedule time = 9: add6,lt2,rout0,
+schedule time = 10: select2,
+schedule time = 11: loop_add5,mod0,
+schedule time = 12: store0,
+loop_add0: 0 0 5
+loop_add1: 0 1 6
+loop_add2: 0 3 5
+loop_add3: 0 2 0
+loop_add4: 0 7 3
+loop_add5: 0 7 1
+load0: 0 3 4
+load3: 0 3 3
+load4: 0 3 2
+load5: 0 1 4
+load6: 0 0 2
+load7: 0 4 1
+load8: 0 3 0
+load9: 0 7 2
+load10: 0 1 5
+add0: 0 2 3
+add1: 0 0 4
+add2: 0 2 2
+add3: 0 0 3
+add4: 0 2 1
+add5: 0 4 2
+add6: 0 5 1
+sub0: 0 2 5
+sub1: 0 1 3
+sub2: 0 0 1
+mul0: 0 2 4
+mul1: 0 1 2
+mul2: 0 1 1
+lt0: 0 4 4
+lt1: 0 6 2
+lt2: 0 4 0
+select0: 0 4 3
+select1: 0 5 2
+select2: 0 5 0
+rout0: 0 gr(0)
+rout1: 0 3 1
+rout2: 0 5 3
+mod0: 0 6 0
+store0: 0 7 0

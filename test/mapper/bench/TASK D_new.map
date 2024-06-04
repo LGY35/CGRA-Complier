@@ -1,0 +1,28 @@
+time cost 0.000295 sec for cgra->II = 1
+tot time: 0.008476
+schedule time = 0: loop_add0,
+schedule time = 1: load0,
+schedule time = 2: add0,
+schedule time = 3: loop_add1,mul0,
+schedule time = 4: load1,add1,
+schedule time = 5: loop_add2,loop_add3,loop_add4,store0,
+schedule time = 6: load2,load3,lt0,
+schedule time = 7: loop_add5,select0,
+schedule time = 8: store1,
+loop_add0: 0 4 0
+loop_add1: 0 5 0
+loop_add2: 0 5 2
+loop_add3: 0 4 3
+loop_add4: 0 5 4
+loop_add5: 0 7 2
+load0: 0 4 1
+load1: 0 6 0
+load2: 0 6 2
+load3: 0 5 3
+add0: 0 5 1
+add1: 0 7 1
+mul0: 0 6 1
+store0: 0 7 0
+store1: 0 7 3
+lt0: 0 6 4
+select0: 0 6 3

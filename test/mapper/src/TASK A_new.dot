@@ -1,0 +1,183 @@
+//../../src/mapper/mapper.out -d './src/TASK A_new.dot' -a './output/TASK A_new.asm' -r './output/TASK A_new.rout.dot' -l 1512 -c '../test_CGRA_design/myADL.json' -g 1 > './output/TASK A_new.map'
+/*
+for(i=0;i<1512;i++){ 
+    b[i] = 0;
+
+    if (0 < Length_H1[i]) {
+        b[i] = b[i] + (int)info[H1[i][0]-1];
+    }
+    if (1 < Length_H1[i]) {
+        b[i] = b[i] + (int)info[H1[i][1]-1];
+    }
+    if (2 < Length_H1[i]) {
+        b[i] = b[i] + (int)info[H1[i][2]-1];
+    }
+    
+    b[i] = b[i]%2;
+}
+*/
+digraph G {
+    // constant
+    length_H1   [opcode=const,val=0];
+    H1          [opcode=const,val=0];
+    b           [opcode=const,val=0];
+    base_info   [opcode=const,val=0]; //all address set to 0 
+    const0      [opcode=const,val=0];
+    const1      [opcode=const,val=1];
+    const2      [opcode=const,val=2];
+    int_width   [opcode=const,val=1]; //using order in array, instead of width
+    H1_width    [opcode=const,val=3];
+    // loop_add: length_H1_i
+    loop_add0 [opcode=add,color=red];
+    loop_add1 [opcode=add,color=red];
+    // loop_add: H1_i
+    loop_add2 [opcode=add,color=red];
+    loop_add3 [opcode=add,color=red];
+    loop_add4 [opcode=add,color=red];
+    // loop_add: b_i
+    loop_add5 [opcode=add,color=red];
+    // load
+    load0[opcode=load,color=red];   //length_H1[i]
+    load3[opcode=load,color=red];   //info[H1[i][0]-1]
+    load4[opcode=load,color=red];   //info[H1[i][1]-1]
+    load5[opcode=load,color=red];   //H1[i][1]
+    load6[opcode=load,color=red];   //H1[i][2]
+    load7[opcode=load,color=red];   //info[H1[i][2]-1]
+    load8[opcode=load,color=red];   //length_H1[i]
+    load9[opcode=load,color=red];   //length_H1[i]
+    load10[opcode=load,color=red];  //H1[i][0] 
+    // add
+    add0[opcode=add,color=red];
+    add1[opcode=add,color=red];
+    add2[opcode=add,color=red];
+    add3[opcode=add,color=red];
+    add4[opcode=add,color=red];
+    add5[opcode=add,color=red];
+    add6[opcode=add,color=red];
+    // sub
+    sub0[opcode=sub,color=red];
+    sub1[opcode=sub,color=red];
+    sub2[opcode=sub,color=red];
+    // mul
+    mul0[opcode=mul,color=red];
+    mul1[opcode=mul,color=red];
+    mul2[opcode=mul,color=red];
+    // le
+    lt0[opcode=lt,color=red];
+    lt1[opcode=lt,color=red];
+    lt2[opcode=lt,color=red];
+    // select
+    select0[opcode=sel,color=red];
+    select1[opcode=sel,color=red];
+    select2[opcode=sel,color=red];
+    // rout: to fit in TEC, all pathes between 2 node should be the same
+    rout0[opcode=rout,color=red];
+    rout1[opcode=rout,color=red];
+    rout2[opcode=rout,color=red];
+    // mod
+    mod0[opcode=mod,color=red];
+    // store
+    store0[opcode=store,color=red]; // b[i]
+//============================================================================================
+    H1->loop_add0[operand=0,type=const_base];
+    H1_width->loop_add0[operand=1];
+    H1->loop_add1[operand=0,type=const_base];
+    H1_width->loop_add1[operand=1];
+
+    length_H1->loop_add2[operand=0,type=const_base];
+    int_width->loop_add2[operand=1];
+    length_H1->loop_add3[operand=0,type=const_base];
+    int_width->loop_add3[operand=1];
+    length_H1->loop_add4[operand=0,type=const_base];
+    int_width->loop_add4[operand=1];
+
+    b->loop_add5[operand=0,type=const_base];
+    int_width->loop_add5[operand=1];
+//============================================================================================
+    select1->rout0[operand=0];
+    rout0->select2[operand=2];
+    select0->rout2[operand=0];
+    rout2->select1[operand=2];
+    add4->rout1[operand=0];
+    rout1->load7[operand=0];
+//============================================================================================
+    loop_add2->load0[operand=0];                 // Load Length_H1[i]
+    loop_add3->load8[operand=0];
+    loop_add4->load9[operand=0];
+    loop_add1->load10[operand=0];          // load H1[i][j]
+
+//============================================================================================
+    // test 0 < Length_H1[i]
+    const0->lt0[operand=0];
+    load0->lt0[operand=1];
+    // test 1 < Length_H1[i]
+    const1->lt1[operand=0];
+    load9->lt1[operand=1];
+    // test 2 < Length_H1[i]
+    const2->lt2[operand=0];
+    load8->lt2[operand=1];
+
+//============================================================================================
+    // calc H1[i][0]-1
+    load10->sub0[operand=0];
+    const1->sub0[operand=1];
+    // calc H1[i][1]-1
+    loop_add0->add1[operand=0];
+    int_width->add1[operand=1];
+    add1->load5[operand=0];
+    load5->sub1[operand=0];
+    const1->sub1[operand=1];
+    // calc H1[i][3]-1
+    add1->add3[operand=0];
+    int_width->add3[operand=1];
+    add3->load6[operand=0];
+    load6->sub2[operand=0];
+    const1->sub2[operand=1];
+
+//============================================================================================
+    // calc addr of info[H1[i][0]-1] and load
+    sub0->mul0[operand=0];
+    int_width->mul0[operand=1];
+    mul0->add0[operand=0];
+    base_info->add0[operand=0];
+    add0->load3[operand=0];
+    // calc addr of info[H1[i][1]-1] and load
+    sub1->mul1[operand=0];
+    int_width->mul1[operand=1];
+    mul1->add2[operand=0];
+    base_info->add2[operand=0];
+    add2->load4[operand=0];
+    // calc addr of info[H1[i][2]-1] and load
+    sub2->mul2[operand=0];
+    int_width->mul2[operand=1];
+    mul2->add4[operand=0];
+    base_info->add4[operand=1];
+
+//============================================================================================
+    // calc b[i] + info[H1[0][0]-1] need not be calc since its adding 0
+    // calc b[i] + info[H1[1][0]-1]
+    select0->add5[operand=0];
+    load4->add5[operand=1];
+    // calc b[i] + info[H1[2][0]-1]
+    select1->add6[operand=0];
+    load7->add6[operand=1];
+
+//============================================================================================
+    // Choose from 0 or info[H1[i][0]-1]
+    lt0->select0[operand=0];
+    load3->select0[operand=1];
+    const0->select0[operand=2];
+    // Choose from select0 or info[H1[i][1]-1]
+    lt1->select1[operand=0];
+    add5->select1[operand=1];
+    // Choose from select1 or info[H1[i][2]-1]
+    lt2->select2[operand=0];
+    add6->select2[operand=1];
+
+//============================================================================================
+    select2->mod0[operand=0];
+    const2->mod0[operand=1];
+    // save result
+    loop_add5->store0[operand=0];
+    mod0->store0[operand=1];
+}

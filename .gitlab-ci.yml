@@ -1,0 +1,29 @@
+stages:
+  - build
+  - test
+
+cache:
+  key: exec_files
+  paths:
+    - src/dfg/dfg.out
+    - src/mapper/mapper.out
+
+job_build_dfg:
+  stage: build
+  script:
+    - make src/dfg/dfg.out
+
+job_build_mapper:
+  stage: build
+  script:
+    - make src/mapper/mapper.out
+
+job_test_dfg:
+  stage: test
+  script:
+    - python3 ./test/dfg/run_test.py
+
+job_test_mapper:
+  stage: test
+  script:
+    - python3 ./test/mapper/run_test.py

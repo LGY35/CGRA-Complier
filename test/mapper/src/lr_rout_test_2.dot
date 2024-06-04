@@ -1,0 +1,42 @@
+//../../src/mapper/mapper.out -d './src/lr_rout_test_2.dot' -a './output/lr_rout_test_2.asm' -r './output/lr_rout_test_2.rout.dot' -l 1512 -c '../test_CGRA_design/myADL.json' -g 1 > './output/lr_rout_test_2.map'
+digraph G {
+    const1[opcode=const, val=1];
+    const2[opcode=const, val=1];
+    
+    add0[opcode=add];
+    add1[opcode=add];
+    add2[opcode=add];
+
+    not0[opcode=not];
+    not1[opcode=not];
+    not2[opcode=not];
+    not4[opcode=not];
+    not5[opcode=not];
+    not6[opcode=not];
+
+
+    rout0[opcode=rout];
+    rout1[opcode=rout];
+    rout2[opcode=rout];
+
+    const1->add0[operand=0];
+    const2->add0[operand=1];
+
+    add0->not0[operand=0];
+    add0->not1[operand=0];
+    add0->not2[operand=0];
+    add0->rout2[operand=0];
+
+    add0->rout0[operand=0];
+    add0->rout1[operand=0];
+
+    rout0->not4[operand=0];
+    rout0->not5[operand=0];
+    rout0->not6[operand=0];
+
+    not0->add1[operand=0];
+    rout1->add1[operand=0];
+
+    rout0->add2[operand=0];
+    rout2->add2[operand=1];
+}

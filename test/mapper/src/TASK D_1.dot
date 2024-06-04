@@ -1,0 +1,49 @@
+//../../src/mapper/mapper.out -d './src/TASK D_1.dot' -a './output/TASK D_1.asm' -r './output/TASK D_1.rout.dot' -l 1512 -c '../test_CGRA_design/myADL.json' -g 1 > './output/TASK D_1.map'
+/*add0
+for(i=0;i<1512;i++) {
+    p = press_P[i];
+    finalx[359+p] = c[i]
+}
+*/
+digraph G {
+    // constant
+    base_finalx                 [opcode=const, val=0];
+    press_P                     [opcode=const, val=0];
+    c                           [opcode=const, val=0];
+    int_width                   [opcode=const, val=1]; //using order in array, instead of width
+    const359                    [opcode=const, val=359];
+
+    // loop add
+    loop_add0[opcode=add];
+    loop_add1[opcode=add];
+    // load
+    load0[opcode=load]; //press_P[i]
+    load1[opcode=load]; //c[i]
+    // add
+    add0[opcode=add];
+    add1[opcode=add];
+    // mul
+    mul0[opcode=mul];
+    // store
+    store0[opcode=store]; //finalx[359+p]
+//============================================================================================
+    press_P->loop_add0[operand=0,type=const_base];
+    int_width->loop_add0[operand=1];    
+    
+    c->loop_add1[operand=0,type=const_base];
+    int_width->loop_add1[operand=1]; 
+ 
+//============================================================================================
+    loop_add0->load0[operand=0];        // load press_P[i]
+    loop_add1->load1[operand=0];        // load c[i]
+//============================================================================================
+    const359->add0[operand=0];
+    load0->add0[operand=1];
+    add0->mul0[operand=0];
+    int_width->mul0[operand=1];
+    mul0->add1[operand=0];
+    base_finalx->add1[operand=1];   // calc addr offinalx[259+p]
+
+    add1->store0[operand=0];
+    load1->store0[operand=1];       // store finalx[259+p]
+}

@@ -1,0 +1,12 @@
+./assembler alg5_loop_0.asm alg5_loop_0.txt
+./assembler alg5_loop_1.asm alg5_loop_1.txt
+./assembler alg5_loop_2.asm alg5_loop_2.txt
+./assembler alg5_loop_3.asm alg5_loop_3.txt
+./assembler alg5_loop_4.asm alg5_loop_4.txt
+./assembler alg1_loop_0.asm alg1_loop_0.txt
+./assembler alg6_loop_0.asm alg6_loop_0.txt
+./assembler alg6_loop_1.asm alg6_loop_1.txt
+./assembler alg6_loop_2.asm alg6_loop_2.txt
+./assembler alg6_loop_3.asm alg6_loop_3.txt
+./assembler alg6_loop_4.asm alg6_loop_4.txt
+

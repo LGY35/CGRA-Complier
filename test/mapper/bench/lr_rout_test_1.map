@@ -1,0 +1,12 @@
+time cost 0.000028 sec for cgra->II = 1
+time cost 0.000027 sec for cgra->II = 2
+tot time: 0.008935
+schedule time = 0: add0,
+schedule time = 1: not0,rout0,rout1,rout2,rout3,rout4,
+add0: 0 0 0
+not0: 1 1 0
+rout0: 1 gr(0)
+rout1: 1 0 0 lr(0)
+rout2: 1 0 0 lr(1)
+rout3: 1 0 0 lr(2)
+rout4: 1 0 1
