@@ -79,7 +79,7 @@ struct Node* create_node(enum OP_ID id, std::string llvm_name)
     assert(id != OP_ID::IN_VALID);
     struct Node* n = new struct Node;
     n->op = id;
-    n->name = op_string[id] + itostr(OP_cnt[id]);
+    n->name = op_string[id] + std::to_string(OP_cnt[id]);
     n->llvm_name = llvm_name;
     OP_cnt[id]++;
     all_nodes.push_back(n);
@@ -90,7 +90,7 @@ struct Node* create_tmp_phi_node(Instruction* I)
     static int cnt = 0;
     struct Node* n = new struct Node;
     n->op = IN_VALID;
-    n->name = "tmp_phi" + itostr(cnt);
+    n->name = "tmp_phi" + std::to_string(cnt);
     n->llvm_name = get_V_name(I);
     cnt++;
     all_nodes.push_back(n);
@@ -197,7 +197,7 @@ struct Node* find_or_create_C_node(int c)
     if (C_map_Node.count(c)) {
         return C_map_Node[c];
     }
-    struct Node* n = create_node(OP_ID::ID_CONST, itostr(c));
+    struct Node* n = create_node(OP_ID::ID_CONST, std::to_string(c));
     n->val = c;
     C_map_Node[c] = n;
     return n;

@@ -1,8 +1,8 @@
 // #include <Windows.h> //change due to compilation error
-#include <thread>
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include <thread>
 #ifndef uchar
 typedef unsigned char uchar;
 #endif // !uint8_t
