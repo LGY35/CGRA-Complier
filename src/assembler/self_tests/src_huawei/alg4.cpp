@@ -14,7 +14,7 @@ static unsigned int tnr_div64(unsigned int in, unsigned int *out, unsigned int *
 		0x00AB, 0x00A7, 0x00A4, 0x00A1, 0x009E, 0x009B, 0x0098, 0x0095,
 		0x0092, 0x0090, 0x008D, 0x008B, 0x0089, 0x0086, 0x0084, 0x0082, 0x0080 };
 	unsigned short *INV_TAB64 = (unsigned short *)&INV_TAB64A[0];
-	for (int i = 25; i >= 0; i--)  
+	for (int i = 25; i >= 0; i--)  // ii = 1
 	{
 		if (((in >> i) & 0x01) != 0)
 		{
@@ -39,7 +39,8 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 {
 	int * d1_c = (int *)malloc((width / 2) * (height / 2) * 4 * sizeof(int));
 	int * d1_ce = (int*)malloc((width / 2 + 12) * (height / 2 + 12) * 4 * sizeof(int));
-	for (int i = 0; i < height / 2; i++)
+    int i = 0;
+	for (int i = 0; i < height / 2; i++)// ii = 1
 	{
 		for (int j = 0; j < width / 2; j++)
 		{
@@ -49,7 +50,7 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 			d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
 		}
 	}
-	for (int c = 0; c < 4; c++)        
+	for (int c = 0; c < 4; c++)        // ii = 7
 	{
 
 		for (int i = 0; i < height / 2; i++)
@@ -81,7 +82,7 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	int weight = 0;
 	unsigned int div_coef, shft;
 	int sad_thr = 160 * 25;  
-	for (int c = 0; c < 4; c++)
+	for (int c = 0; c < 4; c++)// ii = 10
 	{
 		for (int i = 6; i < height / 2 + 6; i++)
 		{
@@ -122,7 +123,7 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		}
 	}
 
-	for (int i = 0; i < height / 2; i++)
+	for (int i = 0; i < height / 2; i++)// ii = 1
 	{
 		for (int j = 0; j < width / 2; j++)
 		{

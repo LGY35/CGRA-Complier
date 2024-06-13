@@ -19,7 +19,7 @@ void alg7_func(unsigned short src_d3_data[INIT_YSIZE * INIT_XSIZE * 2], unsigned
 	int32_t positionY;
 	int32_t deltaX;
 	int32_t deltaY;
-    for (int k = 0; k < INIT_YSIZE * INIT_XSIZE; k++) { 
+    for (int k = 0; k < INIT_YSIZE * INIT_XSIZE; k++) { // ii = 5
         if (k % INIT_XSIZE == 0) {
             j++;
         }

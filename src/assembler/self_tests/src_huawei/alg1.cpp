@@ -19,11 +19,11 @@ void alg1_func1(unsigned short d2_out[D2_HEIGHT_OUT][D2_WIDTH_OUT][3], unsigned 
 	int val3 = 0;
 	int temp0 = 0;
 	int temp1 = 0;
-	int grid_length_wide = (D2_WIDTH_IN << 10) / D2_WIDTH_OUT;
-	int grid_length_high = (D2_HEIGHT_IN << 10) / D2_HEIGHT_OUT;
+	int grid_length_wide = (D2_WIDTH_IN << 10) / D2_WIDTH_OUT; //2048
+	int grid_length_high = (D2_HEIGHT_IN << 10) / D2_HEIGHT_OUT; //2048
     int i = 0, j = 0;
     for (int k = 0; k < D2_HEIGHT_OUT * D2_WIDTH_OUT; k++) {
-        if (k % D2_WIDTH_OUT == 0) {
+        if (k % D2_WIDTH_OUT == 0 && k != 0) {
             i++;
         }
         j = k % D2_WIDTH_OUT;
@@ -57,42 +57,42 @@ void alg1_func1(unsigned short d2_out[D2_HEIGHT_OUT][D2_WIDTH_OUT][3], unsigned 
     }
 }
 
-int * v1;
-int * v2;
-void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_IN])
-{
+// int * v1;
+// int * v2;
+// void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_IN])
+// {
 
-	v1 = (int *)malloc((D2_WIDTH_IN / 2) * (D2_HEIGHT_IN / 2) * sizeof(int));
-	v2 = (int *)malloc((D2_WIDTH_IN / 2) * (D2_HEIGHT_IN / 2) * sizeof(int));
-	unsigned int i = 0, j = 0;
-	for (int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
-        if (k % D2_WIDTH_IN == 0) {
-            i++;
-        }
-        j = k % D2_WIDTH_IN;
+// 	v1 = (int *)malloc((D2_WIDTH_IN / 2) * (D2_HEIGHT_IN / 2) * sizeof(int));
+// 	v2 = (int *)malloc((D2_WIDTH_IN / 2) * (D2_HEIGHT_IN / 2) * sizeof(int));
+// 	unsigned int i = 0, j = 0;
+// 	for (int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
+//         if (k % D2_WIDTH_IN == 0 && k != 0) {
+//             i++;
+//         }
+//         j = k % D2_WIDTH_IN;
 
-        v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
-        v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
-    }
-	int index_w = 0;
-	int index_h = 0;
-	int step_w = 4095 / GRID_H;
-	int step_h = 4095 / GRID_W;
-	for (int i = 0; i < GRID_H*GRID_W; i++) {
-		out[i] = 0;
-	}
-    i = 0;
-    j = 0;
-	for (int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
-        if (k % D2_WIDTH_IN == 0) {
-            i++;
-        }
-        j = k % D2_WIDTH_IN;
+//         v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
+//         v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
+//     }
+// 	int index_w = 0;
+// 	int index_h = 0;
+// 	int step_w = 4095 / GRID_H;
+// 	int step_h = 4095 / GRID_W;
+// 	for (int i = 0; i < GRID_H*GRID_W; i++) {
+// 		out[i] = 0;
+// 	}
+//     i = 0;
+//     j = 0;
+// 	for (int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
+//         if (k % D2_WIDTH_IN == 0 && k != 0) {
+//             i++;
+//         }
+//         j = k % D2_WIDTH_IN;
 
-        index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
-        index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
-        index_w = clip_bits(index_w, 0, GRID_W);
-        index_h = clip_bits(index_h, 0, GRID_H);
-        out[index_w*GRID_H + index_h] += 1;
-    }
-}
+//         index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
+//         index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
+//         index_w = clip_bits(index_w, 0, GRID_W);
+//         index_h = clip_bits(index_h, 0, GRID_H);
+//         out[index_w*GRID_H + index_h] += 1;
+//     }
+// }

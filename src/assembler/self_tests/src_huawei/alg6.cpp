@@ -69,30 +69,56 @@ void alg6_func(unsigned short src_d3_data[ALG6_HEIGHT * ALG6_WIDTH * 2], unsigne
 	int iWidth = ALG6_WIDTH;
 	int tran_mat[9] = { 38,75,15,-22,-42,64,64,-54,-10 };
     int x = 0, y = 0;
-	// for (int i = 0; i < iHeight * iWidth; i++)
-	// {
-	// 	if (i % iWidth == 0) {
-    //         y++;
-    //     }
-    //     x = i % iWidth;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
 
-    //     int in_d2[3];         
-    //     int ext_d3[3];         
-    //     in_d2[0] = d2_in[y][x][0];
-    //     in_d2[1] = d2_in[y][x][1];
-    //     in_d2[2] = d2_in[y][x][2];
-    //     ext_d3[0] = (in_d2[0] * tran_mat[0] + in_d2[1] * tran_mat[1] + in_d2[2] * tran_mat[2]+64) >> 7;
-    //     ext_d3[1] = (in_d2[0] * tran_mat[3] + in_d2[1] * tran_mat[4] + in_d2[2] * tran_mat[5]+64) >> 7;
-    //     ext_d3[2] = (in_d2[0] * tran_mat[6] + in_d2[1] * tran_mat[7] + in_d2[2] * tran_mat[8]+64) >> 7;
-    //     ext_d3[0] = ext_d3[0];   // 
-    //     ext_d3[1] = ext_d3[1] + (128 << 2);     // 
-    //     ext_d3[2] = ext_d3[2] + (128 << 2);     // 
-    //     d3_1[iWidth*y + x] = clip_bits(ext_d3[0], 0, 1023);
-    //     d4_dst[iWidth*y + x] = d3_1[iWidth*y + x];
-    //     d3_2[iWidth*y + x] = clip_bits(ext_d3[1], 0, 1023);
-    //     d3_3[iWidth*y + x] = clip_bits(ext_d3[2], 0, 1023);
-	// }
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[0] = (in_d2[0] * tran_mat[0] + in_d2[1] * tran_mat[1] + in_d2[2] * tran_mat[2]+64) >> 7;
+        d3_1[iWidth*y + x] = clip_bits(ext_d3[0], 0, 1023);
+        d4_dst[iWidth*y + x] = d3_1[iWidth*y + x];
+	}
+    x = 0, y = 0;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
 
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[1] = (in_d2[0] * tran_mat[3] + in_d2[1] * tran_mat[4] + in_d2[2] * tran_mat[5]+64) >> 7;
+        ext_d3[1] = ext_d3[1] + (128 << 2);
+        d3_2[iWidth*y + x] = clip_bits(ext_d3[1], 0, 1023);
+	}
+    x = 0, y = 0;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
+
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[2] = (in_d2[0] * tran_mat[6] + in_d2[1] * tran_mat[7] + in_d2[2] * tran_mat[8]+64) >> 7;
+        ext_d3[2] = ext_d3[2] + (128 << 2);     // 
+        d3_3[iWidth*y + x] = clip_bits(ext_d3[2], 0, 1023);
+	}
 	// for (int y = 0; y < iHeight; y++)
 	// {
 	// 	for (int x = 0; x < iWidth; x++)

@@ -13,7 +13,7 @@ unsigned char alg3_func_1(int bArray[MF_KERNEL_TS*MF_KERNEL_TS], int iFilterLen)
 {
 	int     i, j;            
 	unsigned char bTemp; 
-	for (j = 0; j < iFilterLen - 1; j++){
+	for (j = 0; j < iFilterLen - 1; j++){// ii = 3
 		for (i = 0; i < iFilterLen - j - 1; i++){
 			if (bArray[i] > bArray[i + 1]){ 
 				bTemp = bArray[i];
@@ -34,7 +34,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 {
 	int * d1_c = (int *)malloc((width / 2) * (height / 2) * 4 * sizeof(int));
 	int * d1_ce = (int*)malloc((width / 2 + 8) * (height / 2 + 8) * 4 * sizeof(int));
-	for (int i = 0; i < height / 2; i++)
+	for (int i = 0; i < height / 2; i++)// ii = 1
 	{
 		for (int j = 0; j < width / 2; j++)
 		{
@@ -44,7 +44,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 			d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
 		}
 	}
-	for (int c = 0; c < 4; c++)       
+	for (int c = 0; c < 4; c++) // ii = 7
 	{
 
 		for (int i = 0; i < height / 2; i++)
@@ -69,7 +69,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	}
 
 	int MF_pixel_block[9 * 9] = { 0 };
-	for (int c = 0; c < 4; c++)
+	for (int c = 0; c < 4; c++)// ii = 3
 	{
 		for (int i = 4; i < height / 2 + 4; i++)
 		{
@@ -83,7 +83,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		}
 	}
 
-	for (int i = 0; i < height / 2; i++)
+	for (int i = 0; i < height / 2; i++)// ii = 1
 	{
 		for (int j = 0; j < width / 2; j++)
 		{

@@ -1,4 +1,4 @@
-# CGRA Compiler
+# **CGRA Compiler**
 
 把benchmark生成.bc，然后放在test里面的test/dfg/src下，根据这个bc文件，以及dfg模块生成的可执行文件dfg.out，将bc文件转换成dfg图，这个output会被放在test/dfg/output里面。然后test/dfg/output会和test/dfg/bench对比，校验功能是否正确。
 
@@ -23,8 +23,6 @@
 
 # Benchmark优化
 
-
-
 ## 任务
 
 benchmark的问题
@@ -41,7 +39,7 @@ benchmark的问题
 
 > 60个节点以内
 >
->  100个的可能跑不完
+> 100个的可能跑不完
 >
 > 1分钟
 
@@ -71,6 +69,158 @@ alg7.bc: ./self_tests/src_huawei/alg7.cpp
     ```
 
   ​        可以看到，这里是正确调用了，所以是可以生成llvm的bc
+
+
+
+## 代码优化
+
+### alg5.cpp
+
+源代码为两层的for循环，分别使用row-index和col-index
+
+```c++
+for(int RowIdx=0; RowIdx<ALG5_HEIGHT; RowIdx++) {
+        for(int ColIdx=0; ColIdx<ALG5_WIDTH; ColIdx++) {
+            int RowPos = RowIdx / 2;
+            int ColPos = ColIdx / 2;
+           
+```
+
+将其拆分为一个for循环，使用一个 i 变量，
+
+```c++
+for (int i = 0; i < ALG5_HEIGHT * ALG5_WIDTH; i++) {
+        if (i % ALG5_WIDTH == 0) {
+            RowIdx++; // CGRA 无法使用除法
+        }
+        int ColIdx = i % ALG5_WIDTH;
+        int RowPos = RowIdx / 2;
+        int ColPos = ColIdx / 2;
+```
+
+如果拆完之后的一个for循环太大，可以将内部的操作进一步拆分到几个for循环中。详见alg6.cpp的例子
+
+<u>**这种优化方法的主要目的是通过分离计算步骤来减少每次循环迭代中的复杂度，从而提高编译器的优化效果。**</u>
+
+* **减少每次循环的复杂度**：
+  - 原始代码在一个循环中执行所有计算步骤，包含提取数据、线性变换、调整数据和剪裁数据。这样每次循环迭代的复杂度较高，增加了编译器优化的难度。
+  - 优化后的代码将这些操作分解为多个循环，每个循环只执行一部分计算。这样每次循环迭代的复杂度降低，编译器可以更好地进行优化。
+* **提高数据局部性**：
+  - 在原始代码中，数据的读取和写入分布在每次迭代中，可能导致数据局部性较差。
+  - 优化后的代码在每个循环中处理不同的通道数据，提高了数据局部性，减少了缓存失效的可能性。
+* **利用编译器优化**：
+  - 分离计算步骤后，每个循环的逻辑更为简单，编译器可以更容易地识别和应用优化技术，如循环展开、指令并行等。
+
+
+
+
+
+### alg6.cpp
+
+```c++
+ext_d3[0] = (in_d2[0] * tran_mat[0] + in_d2[1] * tran_mat[1] + in_d2[2] * tran_mat[2]+64) >> 7;//最后的结果除以128，其中加上64实现对结果的四舍五入
+```
+
+
+
+拆分循环：
+
+基本的两层for循环的拆分思路与之前一样。
+
+这里还有一些调优，是把大的for循环继续拆分：比如下面这个，一个for循环内部就计算了3个/4个最终量
+
+```c++
+for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {	
+            y++;
+        }
+        x = i % iWidth;
+
+        int in_d2[3];         
+        int ext_d3[3];         
+		// 逻辑是从 d2_in 中提取三通道数据，通过一个转换矩阵 tran_mat 进行线性变换，生成新的 d3_1、d3_2 和 d3_3 数据。
+        in_d2[0] = d2_in[y][x][0];	//这里是每个通道下，逐像素处理，所以这里还是需要放在循环体内
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+		// 线性变换
+        ext_d3[0] = (in_d2[0] * tran_mat[0] + in_d2[1] * tran_mat[1] + in_d2[2] * tran_mat[2]+64) >> 7;//最后的结果除以128，其中加上64实现对结果的四舍五入
+        ext_d3[1] = (in_d2[0] * tran_mat[3] + in_d2[1] * tran_mat[4] + in_d2[2] * tran_mat[5]+64) >> 7;//应该是因为tran mat的大小限制在128内
+        ext_d3[2] = (in_d2[0] * tran_mat[6] + in_d2[1] * tran_mat[7] + in_d2[2] * tran_mat[8]+64) >> 7;
+        // 数据调整
+		ext_d3[0] = ext_d3[0];   // 
+        ext_d3[1] = ext_d3[1] + (128 << 2);     // (128 << 2) 等价于 128 * 2^2，也就是 128 * 4，结果是 512。
+        ext_d3[2] = ext_d3[2] + (128 << 2);     // （1）增加偏移量可以将数据调整到一个适合的范围。例如，如果转换后的数据需要在一个非负的范围内，增加一个常数偏移量可以确保数据不会出现负值。（2）在某些颜色空间转换（例如 RGB 转 YCbCr 或者类似的颜色空间转换）中，转换后的某些通道需要增加一个偏移量，以确保其值在某个范围内。例如，在 YCbCr 颜色空间中，Cr 和 Cb 通常会有一个偏移量，使其中心值在中间，而不是在 0。
+        // 数据剪裁
+		d3_1[iWidth*y + x] = clip_bits(ext_d3[0], 0, 1023);
+        d4_dst[iWidth*y + x] = d3_1[iWidth*y + x];	//用于存储中间处理结果的数组。但在当前的代码片段中没有看到 d4_dst 的进一步使用
+        d3_2[iWidth*y + x] = clip_bits(ext_d3[1], 0, 1023);
+        d3_3[iWidth*y + x] = clip_bits(ext_d3[2], 0, 1023);
+	}
+```
+
+那么对其进行拆分：d3_1和d4_dst在一个for循环中，d3_2和d3_3各一个for循环
+
+```c++
+	int iHeight = ALG6_HEIGHT;
+	int iWidth = ALG6_WIDTH;
+	int tran_mat[9] = { 38,75,15,-22,-42,64,64,-54,-10 };
+    int x = 0, y = 0;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
+
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[0] = (in_d2[0] * tran_mat[0] + in_d2[1] * tran_mat[1] + in_d2[2] * tran_mat[2]+64) >> 7;
+        d3_1[iWidth*y + x] = clip_bits(ext_d3[0], 0, 1023);
+        d4_dst[iWidth*y + x] = d3_1[iWidth*y + x];
+	}
+    x = 0, y = 0;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
+
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[1] = (in_d2[0] * tran_mat[3] + in_d2[1] * tran_mat[4] + in_d2[2] * tran_mat[5]+64) >> 7;
+        ext_d3[1] = ext_d3[1] + (128 << 2);
+        d3_2[iWidth*y + x] = clip_bits(ext_d3[1], 0, 1023);
+	}
+    x = 0, y = 0;
+	for (int i = 0; i < iHeight * iWidth; i++)
+	{
+		if (i % iWidth == 0 && i != 0) {
+            y++;
+        }
+        x = i % iWidth;
+
+        int in_d2[3];         
+        int ext_d3[3];         
+        in_d2[0] = d2_in[y][x][0];
+        in_d2[1] = d2_in[y][x][1];
+        in_d2[2] = d2_in[y][x][2];
+        ext_d3[2] = (in_d2[0] * tran_mat[6] + in_d2[1] * tran_mat[7] + in_d2[2] * tran_mat[8]+64) >> 7;
+        ext_d3[2] = ext_d3[2] + (128 << 2);     // 
+        d3_3[iWidth*y + x] = clip_bits(ext_d3[2], 0, 1023);
+	}
+```
+
+
+
+
 
 
 
@@ -147,10 +297,10 @@ export PATH=$LLVM_HOME:$PATH
 > ```
 > g++ -m64 -g -I/home/luguangyang/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04/include/llvm/  -c output.cpp -o output.o
 > In file included from output.h:1:0,
->                  from output.cpp:1:
+>               from output.cpp:1:
 > utils.h:7:10: fatal error: llvm/IR/Constants.h: No such file or directory
->  #include "llvm/IR/Constants.h"
->           ^~~~~~~~~~~~~~~~~~~~~
+> #include "llvm/IR/Constants.h"
+>        ^~~~~~~~~~~~~~~~~~~~~
 > compilation terminated.
 > makefile:30: recipe for target 'output.o' failed
 > make: *** [output.o] Error 1
@@ -219,10 +369,10 @@ export PATH=$LLVM_HOME:$PATH
 > ```
 > g++ -m64 -g -I/home/luguangyang/clang+llvm-10.0.0-x86_64-linux-gnu-ubuntu-18.04/include          -c output.cpp -o output.o
 > In file included from output.h:1:0,
->                  from output.cpp:1:
+>               from output.cpp:1:
 > utils.h:97:13: error: ‘set’ in namespace ‘std’ does not name a template type
->  extern std::set<llvm::BasicBlock*> un_condi_BB;
->              ^~~
+> extern std::set<llvm::BasicBlock*> un_condi_BB;
+>           ^~~
 > makefile:29: recipe for target 'output.o' failed
 > make: *** [output.o] Error 1
 > ```
@@ -244,13 +394,13 @@ export PATH=$LLVM_HOME:$PATH
 > ```
 > ./main.cpp: In function ‘int main(int, char**)’:
 > ./main.cpp:50:34: error: ‘class llvm::LoopInfoBase<llvm::BasicBlock, llvm::Loop>’ has no member named ‘getTopLevelLoops’; did you mean ‘TopLevelLoops’?
->              loop_cnt = LoopInfo->getTopLevelLoops().size() - 1;
->                                   ^~~~~~~~~~~~~~~~
->                                   TopLevelLoops
+>           loop_cnt = LoopInfo->getTopLevelLoops().size() - 1;
+>                                ^~~~~~~~~~~~~~~~
+>                                TopLevelLoops
 > ./main.cpp:52:38: error: ‘class llvm::LoopInfoBase<llvm::BasicBlock, llvm::Loop>’ has no member named ‘getTopLevelLoops’; did you mean ‘TopLevelLoops’?
->              for (Loop *L : LoopInfo->getTopLevelLoops()) {      //对于LLVM IR，提取Loop
->                                       ^~~~~~~~~~~~~~~~
->                                       TopLevelLoops
+>           for (Loop *L : LoopInfo->getTopLevelLoops()) {      //对于LLVM IR，提取Loop
+>                                    ^~~~~~~~~~~~~~~~
+>                                    TopLevelLoops
 > ```
 >
 > ![image-20240604173034883](C:\Users\LGY\AppData\Roaming\Typora\typora-user-images\image-20240604173034883.png)

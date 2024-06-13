@@ -30,11 +30,11 @@ static void alg2_func_1(alg2_register *pLuts, float si)
 	};
 	sum = sum + pLutArray[0] + pLutArray[1] * 4 + pLutArray[2] * 4 + pLutArray[3] * 4 + pLutArray[4] * 8 + pLutArray[5] * 4 + pLutArray[6] * 4 + pLutArray[7] * 8
 		+ pLutArray[8] * 8 + pLutArray[9] * 4 + pLutArray[10] * 4 + pLutArray[11] * 8 + pLutArray[12] * 8 + pLutArray[13] * 8 + pLutArray[14] * 4;
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 15; i++)// ii = 1
 	{
 		pLutArray[i] = pLutArray[i] / sum;
 	}
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 15; i++)// ii = 1
 	{
 		pLuts->pLutS[i] = round(pLutArray[i] * 1024);
 	}
@@ -46,7 +46,7 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 {
 	int * d1_c = (int *)malloc((width / 2) * (height / 2) * 4 * sizeof(int));
 	int * d1_ce = (int*)malloc((width / 2 + 8) * (height / 2 + 8) * 4 * sizeof(int));
-	for (int i = 0; i < height / 2; i++)
+	for (int i = 0; i < height / 2; i++)// ii = 2
 	{
 		for (int j = 0; j < width / 2; j++)
 		{
@@ -57,7 +57,7 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 		}
 	}
 
-	for (int c = 0; c < 4; c++)           
+	for (int c = 0; c < 4; c++) // ii = 3
 	{
 		
 		for (int i = 0; i < height / 2; i++)
@@ -88,7 +88,7 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	alg2_register alg2_kernel;
 	alg2_func_1(&alg2_kernel, si);
 	int pLutArray[15];
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 15; i++) // ii = 1
 	{
 		pLutArray[i] = alg2_kernel.pLutS[i];
 	}
@@ -105,7 +105,7 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	};
 
 	int result = 0;
-	for (int c = 0; c < 4; c++)
+	for (int c = 0; c < 4; c++)// ii = 3
 	{
 		for (int i = 4; i < height / 2 + 4; i++)
 		{
@@ -122,7 +122,7 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	}
 
 
-	for (int i = 0; i < height / 2; i++)
+	for (int i = 0; i < height / 2; i++)// ii = 1
 	{
 		for (int j = 0; j < width / 2; j++)
 		{

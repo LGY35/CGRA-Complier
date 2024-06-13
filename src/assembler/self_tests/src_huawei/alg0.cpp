@@ -33,17 +33,17 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 
 	int gain_pos_x[GAIN_LUT_X_NUM] = {0};
 	int gain_pos_y[GAIN_LUT_Y_NUM] = {0};
-	for (int i = 0; i < GAIN_LUT_X_NUM; i++)
+	for (int i = 0; i < GAIN_LUT_X_NUM; i++) // ii = 1
 	{
 		gain_pos_x[i] = i * (width - 1) / (GAIN_LUT_X_NUM - 1);
 	}
 	gain_pos_x[GAIN_LUT_X_NUM - 1] = (width - 1);
-	for (int i = 0; i < GAIN_LUT_Y_NUM; i++)
+	for (int i = 0; i < GAIN_LUT_Y_NUM; i++) // ii = 1
 	{
 		gain_pos_y[i] = i * (height - 1) / (GAIN_LUT_Y_NUM - 1);
 	}
 	gain_pos_y[GAIN_LUT_Y_NUM - 1] = (height - 1);
-	for (int y = 0; y < height; y++)
+	for (int y = 0; y < height; y++) // ii = 10
 	{
 		for (int x = 0; x < width; x++)
 		{		
