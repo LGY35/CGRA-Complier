@@ -86,8 +86,8 @@ void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_
         }
         j = k % D2_WIDTH_IN;
 
-        v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
-        v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
+        // v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
+        // v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
     }
 	int index_w = 0;
 	int index_h = 0;
@@ -104,8 +104,8 @@ void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_
         }
         j = k % D2_WIDTH_IN;
 
-        index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
-        index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
+        // index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
+        // index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
         index_w = clip_bits(index_w, 0, GRID_W);
         index_h = clip_bits(index_h, 0, GRID_H);
         out[index_w*GRID_H + index_h] += 1;

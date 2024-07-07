@@ -61,11 +61,11 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 	gain_pos_y[GAIN_LUT_Y_NUM - 1] = (height - 1);
 	
 	//============================正式循环=========================================
-
+	
 	int x = 0,y = 0;
 	int *x_idx_map = new int[width];
  	int *y_idx_map = new int[height];
-
+	
 	int pos = 0;
     for (int x = 0; x < width; x++) {
         if (x > gain_pos_x[pos + 1] && pos < GAIN_LUT_X_NUM - 1) pos++;
@@ -80,7 +80,9 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 
 	for (int k = 0; k < height*width; k++) // ii = 10
 	{
-		y = k / width;
+		if(k % width == 0 && k != 0)
+			y++;
+		// y = k / width;
 		x = k % width;
 		int x_idx = x_idx_map[x];
 		int y_idx = y_idx_map[y];
@@ -129,7 +131,9 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 			corner_gain[2] = gain3[y_idx + 1][x_idx];
 			corner_gain[3] = gain3[y_idx + 1][x_idx + 1];
 		}
-		int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) / (grid_h * grid_w);//双线性插值算法的具体实现
+		//TODO:
+		// int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) / (grid_h * grid_w);//双线性插值算法的具体实现
+		int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) * (grid_h * grid_w);//双线性插值算法的具体实现
 		d1_out[y*width+x] = clip_bits((d1_in[y*width + x] * gain) >> GAIN_FRAC_FRACTION_BITS,0,4096);
 		// int gain = 0;
 	}

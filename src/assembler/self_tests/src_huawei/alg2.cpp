@@ -159,22 +159,6 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 		{pLutArray[14], pLutArray[13], pLutArray[12], pLutArray[11], pLutArray[10], pLutArray[11], pLutArray[12], pLutArray[13], pLutArray[14]}
 	};
 
-	// c = 0;
-	// unsigned int result = 0;
-	// unsigned int m,n;
-	// for (unsigned int k = 0; k < 4 * (height*width/4) * 81; k++)// ii = 3
-	// {
-	// 	c = k / ((height / 2) * (width / 2) * 81);
-	// 	i = 4 + (k / ((width/2)* 81)) % (height/2);
-	// 	j = 4 + (k / 81) % (width/2);
-	// 	m = (k%81) / 9 - 4;
-	// 	n = (k%81) % 9 - 4;
-
-	// 	if(k%81 == 0) result = 0;	// 重置结果，每当开始处理新的像素时
-	// 	result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
-	// 	if(k%81 == 80)	// 最后一次迭代更新目标数组
-	// 	d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = result >> 10;
-	// }
 
 	c = 0;
 	line_start = 0;block_start = 0; 

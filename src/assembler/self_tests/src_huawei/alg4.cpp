@@ -40,16 +40,16 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	int * d1_c = (int *)malloc((width / 2) * (height / 2) * 4 * sizeof(int));
 	int * d1_ce = (int*)malloc((width / 2 + 12) * (height / 2 + 12) * 4 * sizeof(int));
     int i = 0,j = 0;
-
-	for (int k = 0; k < (height*width/4); k++)// ii = 1
-	{
-		i = k / (width/2);
-		j = k % (width/2);
-		d1_c[i * width / 2 + j] = d1in[i * 2 * width + j * 2];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
-	}
+	//TODO: check
+	// for (int k = 0; k < (height*width/4); k++)// ii = 1
+	// {
+	// 	i = k / (width/2);
+	// 	j = k % (width/2);
+	// 	d1_c[i * width / 2 + j] = d1in[i * 2 * width + j * 2];
+	// 	d1_c[i * width / 2 + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
+	// 	d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
+	// 	d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
+	// }
 
 	int c = 0;i = 0;j = 0;
 	//subloop1中心数据块
@@ -57,40 +57,40 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	{	
 		c = k / ((height/2) * (width/2));
 		i = (k / (width/2)) % (height/2);
-		j = k % (width / 2);
-		d1_ce[(6 + i) * (width / 2 + 12) + 6 + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
+		j = k % (width / 2);//TODO: check
+		// d1_ce[(6 + i) * (width / 2 + 12) + 6 + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
 	}
 	//subloop2左侧边界填充
 	for (int k = 0; k < 4 * (height/2) * 6; k++)
 	{	
 		c = k / (height/2);
 		i = 6 + (k / 6) % (height/2);
-		j = k % 6;
-		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + c * (width / 2) * (height / 2)];
+		j = k % 6;//TODO: check
+		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + c * (width / 2) * (height / 2)];
 	}
 	//subloop3右侧边界填充
 	for (int k = 0; k < 4 * (height/2) * 6; k++)
 	{	
 		c = k / (height/2);
 		i = 6 + (k / 6) % (height/2);
-		j = width / 2 + 6 + k % 6;
-		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
+		j = width / 2 + 6 + k % 6;//TODO: check
+		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
 	}
 	//subloop4顶部边界填充
 	for (int k = 0; k < 4 * 6 * (width/2+12); k++)
 	{	
 		c = k / (6 * (width/2+12));
 		i = (k / (width/2+12)) % 6;
-		j = k % (width/2+12);
-		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+		j = k % (width/2+12);//TODO: check
+		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
 	}
 	//subloop5底部边界填充
 	for (int k = 0; k < 4 * 6 * (width/2+8); k++)
 	{	
 		c = k / (6 * (width/2+12));
 		i = height / 2 + 6 + (k / (width/2+12)) % 6;
-		j = k % (width/2+12);
-		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+		j = k % (width/2+12);//TODO: check
+		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
 	}
 
 	int central_block[9][9] = { 0 };
@@ -147,19 +147,20 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		}
 		weight_sum += sad_thr;
 		filter_sum += sad_thr * central_block[2][2];
-		tnr_div64(weight_sum, &div_coef, &shft);
+		//TODO:
+		// tnr_div64(weight_sum, &div_coef, &shft);
 		d1_c[(i - 6) * width / 2 + (j - 6) + c * (width / 2) * (height / 2)] = ((long long)filter_sum * div_coef + (4096 << shft)) >> (13 + shft);	
 	}
-
-	for (int k = 0; k < (height*width/4); k++)// ii = 1
-	{
-		i = k / (width/2);
-		j = k % (width/2);
-		d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
-		d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
-		d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
-		d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
-	}
+	//TODO: check
+	// for (int k = 0; k < (height*width/4); k++)// ii = 1
+	// {
+	// 	i = k / (width/2);
+	// 	j = k % (width/2);
+	// 	d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
+	// 	d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
+	// 	d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
+	// 	d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
+	// }
 	free(d1_c);
 	free(d1_ce);
 }
