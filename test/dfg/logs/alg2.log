@@ -1,0 +1,7 @@
+Output:
+
+unknow instruction op code
+
+Errors:
+Loop at depth 1 containing: %305<header><latch><exiting>
+  %307 = udiv i32 %306, %7

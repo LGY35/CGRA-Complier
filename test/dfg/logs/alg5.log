@@ -1,0 +1,9 @@
+Output:
+
+Errors:
+Loop at depth 1 containing: %136<header>,%150,%173<latch><exiting>
+Loop at depth 1 containing: %103<header>,%117,%132<latch><exiting>
+Loop at depth 1 containing: %63<header>,%77,%100<latch><exiting>
+Loop at depth 1 containing: %35<header>,%52,%54,%60<latch><exiting>
+Loop at depth 1 containing: %7<header>,%23,%26,%32<latch><exiting>
+

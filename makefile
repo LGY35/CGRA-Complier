@@ -40,5 +40,9 @@ reset_hard:
 	git fetch && git reset --hard origin/$(BRANCH)
 
 PHONY += commit sync sub_pull pull reset_hard list_branch
-# ========================================================================================
+# llvm ========================================================================================
+llvm: ./test/dfg/src/%.bc 
+	llvm-dis $^ -o %.ll 
+
+
 .PHONY: $(PHONY)  # 伪目标声明：这行确保所有在 PHONY 变量中的目标都是伪目标（即使有同名文件存在，也会执行目标规则）。

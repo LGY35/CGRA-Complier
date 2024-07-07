@@ -39,39 +39,58 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 {
 	int * d1_c = (int *)malloc((width / 2) * (height / 2) * 4 * sizeof(int));
 	int * d1_ce = (int*)malloc((width / 2 + 12) * (height / 2 + 12) * 4 * sizeof(int));
-    int i = 0;
-	for (int i = 0; i < height / 2; i++)// ii = 1
+    int i = 0,j = 0;
+
+	for (int k = 0; k < (height*width/4); k++)// ii = 1
 	{
-		for (int j = 0; j < width / 2; j++)
-		{
-			d1_c[i * width / 2 + j] = d1in[i * 2 * width + j * 2];
-			d1_c[i * width / 2 + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
-			d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
-			d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
-		}
+		i = k / (width/2);
+		j = k % (width/2);
+		d1_c[i * width / 2 + j] = d1in[i * 2 * width + j * 2];
+		d1_c[i * width / 2 + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
+		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
+		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
 	}
-	for (int c = 0; c < 4; c++)        // ii = 7
-	{
 
-		for (int i = 0; i < height / 2; i++)
-			for (int j = 0; j < width / 2; j++)
-				d1_ce[(6 + i) * (width / 2 + 12) + 6 + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
-
-		for (int i = 6; i < height / 2 + 6; i++)
-			for (int j = 0; j < 6; j++)
-				d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + c * (width / 2) * (height / 2)];
-
-		for (int i = 6; i < height / 2 + 6; i++)
-			for (int j = width / 2 + 6; j < width / 2 + 12; j++)
-				d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
-
-		for (int i = 0; i < 6; i++)
-			for (int j = 0; j < width / 2 + 12; j++)
-				d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
-	
-		for (int i = height / 2 + 6; i < height / 2 + 12; i++)
-			for (int j = 0; j < width / 2 + 12; j++)
-				d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+	int c = 0;i = 0;j = 0;
+	//subloop1中心数据块
+	for (int k = 0; k < 4 * (height/2) * (width/2); k++)
+	{	
+		c = k / ((height/2) * (width/2));
+		i = (k / (width/2)) % (height/2);
+		j = k % (width / 2);
+		d1_ce[(6 + i) * (width / 2 + 12) + 6 + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
+	}
+	//subloop2左侧边界填充
+	for (int k = 0; k < 4 * (height/2) * 6; k++)
+	{	
+		c = k / (height/2);
+		i = 6 + (k / 6) % (height/2);
+		j = k % 6;
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + c * (width / 2) * (height / 2)];
+	}
+	//subloop3右侧边界填充
+	for (int k = 0; k < 4 * (height/2) * 6; k++)
+	{	
+		c = k / (height/2);
+		i = 6 + (k / 6) % (height/2);
+		j = width / 2 + 6 + k % 6;
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(i - 6) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
+	}
+	//subloop4顶部边界填充
+	for (int k = 0; k < 4 * 6 * (width/2+12); k++)
+	{	
+		c = k / (6 * (width/2+12));
+		i = (k / (width/2+12)) % 6;
+		j = k % (width/2+12);
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+	}
+	//subloop5底部边界填充
+	for (int k = 0; k < 4 * 6 * (width/2+8); k++)
+	{	
+		c = k / (6 * (width/2+12));
+		i = height / 2 + 6 + (k / (width/2+12)) % 6;
+		j = k % (width/2+12);
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
 	}
 
 	int central_block[9][9] = { 0 };
@@ -82,57 +101,165 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	int weight = 0;
 	unsigned int div_coef, shft;
 	int sad_thr = 160 * 25;  
-	for (int c = 0; c < 4; c++)// ii = 10
+
+	c = 0;i = 0;j = 0;
+	int x = 0;int y = 0;
+	int m = 0;int n = 0;
+	for(int k = 0; k < 4 * (height*width/4); k++)
 	{
-		for (int i = 6; i < height / 2 + 6; i++)
+		c = k / (height*width/4);
+		i = 6 + (k / (width/2)) % (height/2);
+		j = 6 + k % (width / 2);
+
+		for(int inner_xy_k = 0; inner_xy_k < 25; inner_xy_k++)
 		{
-			for (int j = 6; j < width / 2 + 6; j++)
+			x = inner_xy_k / 5 - 2;
+			y = inner_xy_k % 5 - 2;
+			central_block[y + 2][x + 2] = d1_ce[(i + y) * (width / 2 + 12) + j + x + c * (width / 2 + 12) * (height / 2 + 12)];
+		}
+				
+		weight_sum = 0;
+		filter_sum = 0;
+		for (int inner_mn_k = 0; inner_mn_k < 81 * 25; inner_mn_k++)
+		{
+			m = (inner_mn_k/25) / 9 - 4;
+			n = (inner_mn_k/25) % 9 - 4;
+
+			if (m == 0 && n == 0)
+				continue;
+
+			x = (inner_mn_k%25) / 5 - 2;
+			y = (inner_mn_k%25) % 5 - 2;
+			ref_block[y + 2][x + 2] = d1_ce[(i + m + y) * (width / 2 + 12) + j + n + x + c * (width / 2 + 12) * (height / 2 + 12)];
+			
+			 if ((inner_mn_k % 25) == 0)  // Reset SAD at the beginning of each new (m, n) processing
+        		sad = 0;
+			// x = (inner_mn_k%25) / 5 - 2;
+			// y = (inner_mn_k%25) % 5 - 2;
+			sad += abs(central_block[y + 2][x + 2] - ref_block[y + 2][x + 2]);
+
+			if ((inner_mn_k % 25) == 24)   // After finishing all 25 xy pairs for current mn pair
 			{
-
-				for (int y = -2; y <= 2; y++)
-					for (int x = -2; x <= 2; x++)
-						central_block[y + 2][x + 2] = d1_ce[(i + y) * (width / 2 + 12) + j + x + c * (width / 2 + 12) * (height / 2 + 12)];
-				weight_sum = 0;
-				filter_sum = 0;
-				for (int m = -4; m <= 4; m++)
-				{
-					for (int n = -4; n <= 4; n++)
-					{
-
-						if (m == 0 && n == 0)
-							continue;
-	
-						for (int y = -2; y <= 2; y++)
-							for (int x = -2; x <= 2; x++)
-								ref_block[y + 2][x + 2] = d1_ce[(i + m + y) * (width / 2 + 12) + j + n + x + c * (width / 2 + 12) * (height / 2 + 12)];
-		
-						sad = 0;
-						for (int y = -2; y <= 2; y++)
-							for (int x = -2; x <= 2; x++)
-								sad += abs(central_block[y + 2][x + 2] - ref_block[y + 2][x + 2]);
-						weight = (sad > sad_thr) ? 0 : (sad_thr - sad);
-						weight_sum += weight;
-						filter_sum += weight * ref_block[2][2];
-					}
-				}
-				weight_sum += sad_thr;
-				filter_sum += sad_thr * central_block[2][2];
-				tnr_div64(weight_sum, &div_coef, &shft);
-				d1_c[(i - 6) * width / 2 + (j - 6) + c * (width / 2) * (height / 2)] = ((long long)filter_sum * div_coef + (4096 << shft)) >> (13 + shft);
+				weight = (sad > sad_thr) ? 0 : (sad_thr - sad);
+				weight_sum += weight;
+				filter_sum += weight * ref_block[2][2];
 			}
 		}
+		weight_sum += sad_thr;
+		filter_sum += sad_thr * central_block[2][2];
+		tnr_div64(weight_sum, &div_coef, &shft);
+		d1_c[(i - 6) * width / 2 + (j - 6) + c * (width / 2) * (height / 2)] = ((long long)filter_sum * div_coef + (4096 << shft)) >> (13 + shft);	
 	}
 
-	for (int i = 0; i < height / 2; i++)// ii = 1
+	for (int k = 0; k < (height*width/4); k++)// ii = 1
 	{
-		for (int j = 0; j < width / 2; j++)
-		{
-			d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
-			d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
-			d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
-			d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
-		}
+		i = k / (width/2);
+		j = k % (width/2);
+		d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
+		d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
+		d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
+		d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
 	}
 	free(d1_c);
 	free(d1_ce);
 }
+
+
+// backup
+	// c = 0;i = 0;j = 0;
+	// int x = 0;int y = 0;
+	// int m = 0;int n = 0;
+	// for(int k = 0; k < 4 * (height*width/4); k++)
+	// {
+	// 	c = k / (height*width/4);
+	// 	i = 6 + (k / (width/2)) % (height/2);
+	// 	j = 6 + k % (width / 2);
+
+	// 	for(int inner_xy_k = 0; inner_xy_k < 25; inner_xy_k++)
+	// 	{
+	// 		x = inner_xy_k / 5 - 2;
+	// 		y = inner_xy_k % 5 - 2;
+	// 		central_block[y + 2][x + 2] = d1_ce[(i + y) * (width / 2 + 12) + j + x + c * (width / 2 + 12) * (height / 2 + 12)];
+	// 	}
+				
+	// 	weight_sum = 0;
+	// 	filter_sum = 0;
+	// 	for (int inner_mn_k = 0; inner_mn_k < 81; inner_mn_k++)
+	// 	{
+	// 		m = inner_mn_k / 9 - 4;
+	// 		n = inner_mn_k % 9 - 4;
+
+	// 		if (m == 0 && n == 0)
+	// 			continue;
+
+	// 		for(int inner_xy_k = 0; inner_xy_k < 25; inner_xy_k++)
+	// 		{
+	// 			x = inner_xy_k / 5 - 2;
+	// 			y = inner_xy_k % 5 - 2;
+	// 			ref_block[y + 2][x + 2] = d1_ce[(i + m + y) * (width / 2 + 12) + j + n + x + c * (width / 2 + 12) * (height / 2 + 12)];
+	// 		}
+	// 		sad = 0;
+	// 		for(int inner_xy_k = 0; inner_xy_k < 25; inner_xy_k++)
+	// 		{
+	// 			x = inner_xy_k / 5 - 2;
+	// 			y = inner_xy_k % 5 - 2;
+	// 			sad += abs(central_block[y + 2][x + 2] - ref_block[y + 2][x + 2]);
+	// 		}	
+	// 		weight = (sad > sad_thr) ? 0 : (sad_thr - sad);
+	// 		weight_sum += weight;
+	// 		filter_sum += weight * ref_block[2][2];
+	// 	}
+	// 	weight_sum += sad_thr;
+	// 	filter_sum += sad_thr * central_block[2][2];
+	// 	tnr_div64(weight_sum, &div_coef, &shft);
+	// 	d1_c[(i - 6) * width / 2 + (j - 6) + c * (width / 2) * (height / 2)] = ((long long)filter_sum * div_coef + (4096 << shft)) >> (13 + shft);	
+	// }
+
+
+	// backup222 未改完的单层for
+	// 	c = 0;i = 0;j = 0;
+	// int x = 0;int y = 0;
+	// int m = 0;int n = 0;
+	// int base = height * width / 4;
+	// int offset = 5 * 5 * 9 * 9;
+	// for(int k = 0; k < 4 * (height*width/4) * 25 * 81; k++)
+	// {
+	// 	c = k / (base * offset);
+	// 	int inner_index = k % (offset * base);
+
+	// 	i = 6 + (((inner_index / offset)) / (width/2)) % (height/2);
+	// 	j = 6 + (inner_index / offset) % (width / 2);
+
+	// 	int block_index = inner_index % offset;
+	// 	x = (block_index / 81) / 5 % 5 - 2; // 5x5 block adjustment
+    // 	y = (block_index / 81) % 5 - 2;
+	// 	central_block[y + 2][x + 2] = d1_ce[(i + y) * (width / 2 + 12) + j + x + c * (width / 2 + 12) * (height / 2 + 12)];
+
+	// 	if(block_index == 0)	
+	// 	{
+	// 		weight_sum = 0;
+	// 		filter_sum = 0;
+	// 	}	
+		
+	// 	m = (block_index % 81) / 9 - 4;
+	// 	n = (block_index % 81) % 9 - 4;
+	// 	if (m == 0 && n == 0)
+	// 		continue;
+	// 	x = (inner_index / 81) / 5 % 5 - 2;
+	// 	y = (inner_index / 81) % 5 - 2;
+	// 	ref_block[y + 2][x + 2] = d1_ce[(i + m + y) * (width / 2 + 12) + j + n + x + c * (width / 2 + 12) * (height / 2 + 12)];
+	// 	if((inner_index / 25) % 81 == 0) sad = 0;
+	// 	sad += abs(central_block[y + 2][x + 2] - ref_block[y + 2][x + 2]);
+		
+	// 	weight = (sad > sad_thr) ? 0 : (sad_thr - sad);
+	// 	weight_sum += weight;
+	// 	filter_sum += weight * ref_block[2][2];
+
+	// 	if((inner_index/25) % 81 == 80)
+	// 	{
+	// 		weight_sum += sad_thr;
+	// 		filter_sum += sad_thr * central_block[2][2];
+	// 		tnr_div64(weight_sum, &div_coef, &shft);
+	// 		d1_c[(i - 6) * width / 2 + (j - 6) + c * (width / 2) * (height / 2)] = ((long long)filter_sum * div_coef + (4096 << shft)) >> (13 + shft);	
+	// 	}
+	// }

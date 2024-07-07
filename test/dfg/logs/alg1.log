@@ -1,0 +1,8 @@
+Output:
+
+unknow instruction op code
+
+Errors:
+Loop at depth 1 containing: %4<header><latch><exiting>
+Loop at depth 1 containing: %46<header><latch><exiting>
+  %61 = sdiv i32 %60, 255
