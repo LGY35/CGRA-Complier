@@ -15,7 +15,7 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 	//定义了三个不同的增益查找表。每个查找表有不同的增益值，用于处理不同位置和类型的像素。
 	//3组写进代码的固定增益
 	//尺寸6组*8个
-	int gain1[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
+	unsigned int gain1[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
 		{1624, 1524, 1024, 1024, 1024, 1024, 1624, 1824},
 		{1624, 1424, 1024, 1024, 1024, 1024, 1524, 1724},
 		{1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024},
@@ -23,7 +23,7 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 		{1624, 1424, 1024, 1024, 1024, 1024, 1324, 1624},
 		{1824, 1524, 1024, 1024, 1024, 1024, 1524, 1724}
 	};
-	int gain2[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
+	unsigned int gain2[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
 		{1624, 1524, 1024, 1024, 1024, 1024, 1624, 1784},
 		{1624, 1424, 1024, 1024, 1024, 1024, 1584, 1664},
 		{1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024},
@@ -31,7 +31,7 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 		{1524, 1324, 1024, 1024, 1024, 1024, 1424, 1664},
 		{1724, 1424, 1024, 1024, 1024, 1024, 1554, 1784}
 	};
-	int gain3[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
+	unsigned int gain3[GAIN_LUT_Y_NUM][GAIN_LUT_X_NUM] = {
 		{1224, 1154, 1024, 1024, 1024, 1024, 1184, 1324},
 		{1164, 1124, 1024, 1024, 1024, 1024, 1124, 1164},
 		{1024, 1024, 1024, 1024, 1024, 1024, 1024, 1024},
@@ -42,19 +42,19 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 
 	//这部分代码的功能是计算增益查找表在输入图像中的位置，确保这些位置均匀分布在图像的宽度和高度上。
 	//赋0初值
-	int gain_pos_x[GAIN_LUT_X_NUM] = {0};
-	int gain_pos_y[GAIN_LUT_Y_NUM] = {0};
+	unsigned int gain_pos_x[GAIN_LUT_X_NUM] = {0};
+	unsigned int gain_pos_y[GAIN_LUT_Y_NUM] = {0};
 
 	//循环赋值 pos gain数组【0】-【7】的每个元素  所以只能对8个位置进行增益，位置存在pos x中。
 	//把图像宽度width平分了8组，gain pos 元素为0 (width-1)/7 (width-1)2/7...(width-1)7/7
-	for (int i = 0; i < GAIN_LUT_X_NUM; i++) // ii = 1
+	for (unsigned int i = 0; i < GAIN_LUT_X_NUM; i++) // ii = 1
 	{
 		gain_pos_x[i] = i * (width - 1) / (GAIN_LUT_X_NUM - 1);
 	}
 	gain_pos_x[GAIN_LUT_X_NUM - 1] = (width - 1);
 
 	//把height平分了6组，gain pos 元素为0 (height-1)/5 (height-1)2/5...(height-1)5/5
-	for (int i = 0; i < GAIN_LUT_Y_NUM; i++) // ii = 1
+	for (unsigned int i = 0; i < GAIN_LUT_Y_NUM; i++) // ii = 1
 	{
 		gain_pos_y[i] = i * (height - 1) / (GAIN_LUT_Y_NUM - 1);
 	}
@@ -62,42 +62,42 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 	
 	//============================正式循环=========================================
 	
-	int x = 0,y = 0;
-	int *x_idx_map = new int[width];
- 	int *y_idx_map = new int[height];
+	unsigned int x = 0,y = 0;
+	unsigned int *x_idx_map = new unsigned int[width];
+ 	unsigned int *y_idx_map = new unsigned int[height];
 	
-	int pos = 0;
-    for (int x = 0; x < width; x++) {
+	unsigned int pos = 0;
+    for (unsigned int x = 0; x < width; x++) {
         if (x > gain_pos_x[pos + 1] && pos < GAIN_LUT_X_NUM - 1) pos++;
         x_idx_map[x] = pos;
     }
 	pos = 0;
-	for (int y = 0; y < height; y++) 
+	for (unsigned int y = 0; y < height; y++) 
 	{
 		if (y > gain_pos_y[pos + 1] && pos < GAIN_LUT_Y_NUM - 1) pos++;
 		y_idx_map[y] = pos;
 	}
 
-	for (int k = 0; k < height*width; k++) // ii = 10
+	for (unsigned int k = 0; k < height*width; k++) // ii = 10
 	{
 		if(k % width == 0 && k != 0)
 			y++;
 		// y = k / width;
 		x = k % width;
-		int x_idx = x_idx_map[x];
-		int y_idx = y_idx_map[y];
+		unsigned int x_idx = x_idx_map[x];
+		unsigned int y_idx = y_idx_map[y];
 		
-		int x1 = x - gain_pos_x[x_idx];
-		int x2 = gain_pos_x[x_idx + 1] - x;
-		int y1 = y - gain_pos_y[y_idx];
-		int y2 = gain_pos_y[y_idx + 1] - y;
+		unsigned int x1 = x - gain_pos_x[x_idx];
+		unsigned int x2 = gain_pos_x[x_idx + 1] - x;
+		unsigned int y1 = y - gain_pos_y[y_idx];
+		unsigned int y2 = gain_pos_y[y_idx + 1] - y;
 		
 		//计算当前像素所在网格的宽度 grid_w 和高度 grid_h。
 		//上述中间量传给加法PE得到grid
-		int grid_w = x1 + x2;
-		int grid_h = y1 + y2;
+		unsigned int grid_w = x1 + x2;
+		unsigned int grid_h = y1 + y2;
 		//存储当前像素位置的四个角的增益值。没用上
-		int corner_gain[4] = {0};
+		unsigned int corner_gain[4] = {0};
 		//gain 1 2 3是存在mem里的，肯定要访存，让i传给减法pe做i-1，也传给corner gain的load PE，这里并行4套，提高吞吐
 		//width*height次循环，每次都要做一次下面访存
 		//4套if判断
@@ -133,7 +133,7 @@ void alg0_func(unsigned short* d1_in, unsigned short* d1_out, unsigned int width
 		}
 		//TODO:
 		// int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) / (grid_h * grid_w);//双线性插值算法的具体实现
-		int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) * (grid_h * grid_w);//双线性插值算法的具体实现
+		int gain = (x2 * y2 * corner_gain[0] + x1 * y2 * corner_gain[1] + x2 * y1 * corner_gain[2] + x1 * y1 * corner_gain[3]) / (grid_h * grid_w);//双线性插值算法的具体实现
 		d1_out[y*width+x] = clip_bits((d1_in[y*width + x] * gain) >> GAIN_FRAC_FRACTION_BITS,0,4096);
 		// int gain = 0;
 	}

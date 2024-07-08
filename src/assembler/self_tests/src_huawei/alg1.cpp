@@ -86,26 +86,29 @@ void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_
         }
         j = k % D2_WIDTH_IN;
 
-        // v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
-        // v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4095);
+        v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) * (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
+        v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) * (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
+        //TODO: check 
+        // v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) * (D1[2 / (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
+        // v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
     }
-	int index_w = 0;
-	int index_h = 0;
-	int step_w = 4095 / GRID_H;
-	int step_h = 4095 / GRID_W;
-	for (int i = 0; i < GRID_H*GRID_W; i++) {
+	unsigned int index_w = 0;
+	unsigned int index_h = 0;
+	unsigned int step_w = 4096 / GRID_H;    // 4095改成4096
+	unsigned int step_h = 4096 / GRID_W;    // 4095改成4096
+	for (unsigned int i = 0; i < GRID_H*GRID_W; i++) {
 		out[i] = 0;
 	}
     i = 0;
     j = 0;
-	for (int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
+	for (unsigned int k = 0; k < D2_HEIGHT_IN * D2_WIDTH_IN; k++) {
         if (k % D2_WIDTH_IN == 0 && k != 0) {
             i++;
         }
         j = k % D2_WIDTH_IN;
 
-        // index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
-        // index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
+        index_w = v1[i*D2_WIDTH_IN / 2 + j] / step_w;
+        index_h = v2[i*D2_WIDTH_IN / 2 + j] / step_h;
         index_w = clip_bits(index_w, 0, GRID_W);
         index_h = clip_bits(index_h, 0, GRID_H);
         out[index_w*GRID_H + index_h] += 1;

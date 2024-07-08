@@ -50,7 +50,6 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	unsigned int i = 0,j = 0;
 	for (unsigned int k = 0; k < height * width / 4; k++)// ii = 2
 	{
-		// i = k / (width/2);
 		if(k % (width/2) == 0 && k != 0)
 			i ++;
 		j = k % (width/2);
@@ -61,87 +60,51 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	}
 
 	
-	i = 0, j = 0;
-	unsigned int  c = 0;
-	unsigned int line_start = 0, block_start = 0;
-	unsigned int block_size = (height / 2) * (width / 2);
-
-	// subloop1 中心数据块
-	for (unsigned int k = 0; k < 4 * block_size; k++) {
-		if (k != 0 && k % block_size == 0) {
-			c++;
-			line_start = k;
-		}
-		if (k != 0 && (k - line_start) % (width / 2) == 0 && k > line_start) {
-			i++;
-		}
-		j = (k - line_start) % (width / 2);
-		d1_ce[(4 + i) * (width / 2 + 8) + 4 + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[i * width / 2 + j + c * (width / 2) * (height / 2)];
-		if (j == (width / 2) - 1) {
-			line_start = k + 1;
-			i = 0;
-		}
+	unsigned int c = 0;i = 0;j = 0;
+	//subloop1中心数据块
+	for (int k = 0; k < 4 * (height/2) * (width/2); k++)
+	{	
+		c = k / ((height/2) * (width/2));
+		i = (k / (width/2)) % (height/2);
+		j = k % (width / 2);
+		d1_ce[(4 + i) * (width / 2 + 8) + 4 + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
 	}
-	c = 0;
-	i = 0;
-	j = 0;
-
-	// subloop2 左侧边界填充
-	for (unsigned int k = 0; k < 4 * (height / 2) * 4; k++) {
-		if (k != 0 && k % (height / 2) == 0) {
-			c++;
-			line_start = k;
-		}
-		i = 4 + (k - line_start) / 4;
+	//subloop2左侧边界填充
+	for (int k = 0; k < 4 * (height/2) * 4; k++)
+	{	
+		c = k / (height/2);
+		i = 4 + (k / 4) % (height/2);
 		j = k % 4;
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) * width / 2 + c * (width / 2) * (height / 2)];
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  width / 2 + c * (width / 2) * (height / 2)];
 	}
-	c = 0;
-	i = 0;
-	j = 0;
-
-	// subloop3 右侧边界填充
-	for (unsigned int k = 0; k < 4 * (height / 2) * 4; k++) {
-		if (k != 0 && k % (height / 2) == 0) {
-			c++;
-			line_start = k;
-		}
-		i = 4 + (k - line_start) / 4;
+	//subloop3右侧边界填充
+	for (int k = 0; k < 4 * (height/2) * 4; k++)
+	{	
+		c = k / (height/2);
+		i = 4 + (k / 4) % (height/2);
 		j = width / 2 + 4 + k % 4;
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) * width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
 	}
-	c = 0;
-	i = 0;
-	j = 0;
-
-	// subloop4 顶部边界填充
-	for (unsigned int k = 0; k < 4 * 4 * (width / 2 + 8); k++) {
-		if (k != 0 && k % (4 * (width / 2 + 8)) == 0) {
-			c++;
-			line_start = k;
-		}
-		i = (k - line_start) / (width / 2 + 8);
-		j = k % (width / 2 + 8);
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+	//subloop4顶部边界填充
+	for (int k = 0; k < 4 * 4 * (width/2+8); k++)
+	{	
+		c = k / (4 * (width/2+8));
+		i = (k / (width/2+8)) % 4;
+		j = k % (width/2+8);//TODO: check
+		// d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
-	c = 0;
-	i = 0;
-	j = 0;
-
-	// subloop5 底部边界填充
-	for (unsigned int k = 0; k < 4 * 4 * (width / 2 + 8); k++) {
-		if (k != 0 && k % (4 * (width / 2 + 8)) == 0) {
-			c++;
-			line_start = k;
-		}
-		i = height / 2 + 4 + (k - line_start) / (width / 2 + 8);
-		j = k % (width / 2 + 8);
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+	//subloop5底部边界填充
+	for (int k = 0; k < 4 * 4 * (width/2+8); k++)
+	{	
+		c = k / (4 * (width/2+8));
+		i = height / 2 + 4 + (k / (width/2+8)) % 4;
+		j = k % (width/2+8);//TODO: check
+		// d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
 
 	//============================================================================================================
-	alg2_register alg2_kernel;
-	alg2_func_1(&alg2_kernel, si);
+	alg2_register alg2_kernel;//TODO: check
+	// alg2_func_1(&alg2_kernel, si);
 	unsigned int pLutArray[15];
 	for (unsigned int i = 0; i < 15; i++) // ii = 1
 	{
@@ -159,64 +122,28 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 		{pLutArray[14], pLutArray[13], pLutArray[12], pLutArray[11], pLutArray[10], pLutArray[11], pLutArray[12], pLutArray[13], pLutArray[14]}
 	};
 
-
 	c = 0;
-	line_start = 0;block_start = 0; 
-	unsigned int  result = 0, m = 0, n = 0;
-	unsigned int kernel_size = 81; // 9x9 kernel
-	block_size = (height / 2) * (width / 2);
-	unsigned int sub_block_size = block_size * kernel_size;
-	unsigned int total_iterations = 4 * sub_block_size;
-	unsigned int sub_block_start = 0;
-
-	for (unsigned int k = 0; k < total_iterations; k++) {
-		// Update 'c' for every new sub-block of the entire data set
-		if (k != 0 && k % sub_block_size == 0) {
-			c++;
-			sub_block_start = k;
-		}
-
-		// Update 'i' for every new line of sub-block
-		if (k != sub_block_start && (k - sub_block_start) % ((width / 2) * kernel_size) == 0) {
-			line_start = k;
-		}
-
-		if (k != line_start && (k - line_start) % kernel_size == 0) {
-			i++;
-		}
-
-		j = 4 + (unsigned int)(((k - line_start) / 128) * (unsigned int)1.6) % (width / 2); // Simplify calculation    
-		m = ((k % 81) / 8) - 4; // Kernel row
-		n = (k % 9) - 4; // Kernel column
-
-		// Reset result at the beginning of each kernel application
-		if (k % kernel_size == 0) result = 0;
-
-		// Accumulate result
-		result += d1_ce[(4 + i + m) * (width / 2 + 8) + (4 + j + n) + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
-
-		// Finalize result for the current kernel application
-		if (k % kernel_size == kernel_size - 1) {
-			d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = result >> 10;
-		}
-
-		// Reset i and line_start when finishing a line
-		if (j == (width / 2) - 1 + 4) {
-			line_start = k + 1;
-			i = 0;
-		}
+	int result = 0;
+	int m,n;
+	for (int k = 0; k < 4 * (height*width/4) * 81; k++)// ii = 3
+	{
+		c = k / ((height / 2) * (width / 2) * 81);
+		i = 4 + (k / ((width/2)* 81)) % (height/2);
+		j = 4 + (k / 81) % (width/2);
+		m = (k%81) / 9 - 4;
+		n = (k%81) % 9 - 4;
+		//TODO: check
+		if(k%81 == 0) result = 0;	// 重置结果，每当开始处理新的像素时
+		// result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
+		// if(k%81 == 80)	// 最后一次迭代更新目标数组
+		// 	d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = result >> 10;
 	}
-
-	// Note that variable initializations for 'i', 'j' are omitted here; assume they are appropriately reset before this code block if needed.
-
-
 	//================================================================		================================================================
 
 	// 优化4：2层
 	i = 0;j = 0;
 	for (unsigned int k = 0; k < height*width / 4; k++)// ii = 1
 	{
-		// i = k / (width/2);
 		if(k % (width/2) == 0 && k != 0)
 			i ++;
 		j = k % (width/2);
