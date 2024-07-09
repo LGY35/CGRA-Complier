@@ -42,7 +42,8 @@ static void alg2_func_1(alg2_register *pLuts, unsigned int si)
 }
 
 
-void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, unsigned int height,unsigned int si)
+// void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, unsigned int height,unsigned int si)
+void alg2_func(unsigned int* d1in, unsigned int* d1out, unsigned int width, unsigned int height,unsigned int si)
 {
 	unsigned int * d1_c = (unsigned int *)malloc((width / 2) * (height / 2) * 4 * sizeof(unsigned int));
 	unsigned int * d1_ce = (unsigned int*)malloc((width / 2 + 8) * (height / 2 + 8) * 4 * sizeof(unsigned int));
@@ -90,16 +91,16 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	{	
 		c = k / (4 * (width/2+8));
 		i = (k / (width/2+8)) % 4;
-		j = k % (width/2+8);//TODO: check
-		// d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+		j = k % (width/2+8);
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
 	//subloop5底部边界填充
 	for (int k = 0; k < 4 * 4 * (width/2+8); k++)
 	{	
 		c = k / (4 * (width/2+8));
 		i = height / 2 + 4 + (k / (width/2+8)) % 4;
-		j = k % (width/2+8);//TODO: check
-		// d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+		j = k % (width/2+8);
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
 
 	//============================================================================================================
@@ -123,18 +124,18 @@ void alg2_func(unsigned short* d1in, unsigned short* d1out, unsigned int width, 
 	};
 
 	c = 0;
-	int result = 0;
-	int m,n;
-	for (int k = 0; k < 4 * (height*width/4) * 81; k++)// ii = 3
+	unsigned int result = 0;
+	unsigned int m,n;
+	for (unsigned int k = 0; k < 4 * (height*width/4) * 81; k++)// ii = 3
 	{
 		c = k / ((height / 2) * (width / 2) * 81);
 		i = 4 + (k / ((width/2)* 81)) % (height/2);
 		j = 4 + (k / 81) % (width/2);
 		m = (k%81) / 9 - 4;
 		n = (k%81) % 9 - 4;
-		//TODO: check
 		if(k%81 == 0) result = 0;	// 重置结果，每当开始处理新的像素时
-		// result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
+		result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
+		// //TODO: check
 		// if(k%81 == 80)	// 最后一次迭代更新目标数组
 		// 	d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = result >> 10;
 	}

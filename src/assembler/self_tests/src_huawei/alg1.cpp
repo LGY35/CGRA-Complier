@@ -14,22 +14,22 @@ grid_length_wide 和 grid_length_high 用于计算输入和输出图像尺寸的
 */
 void alg1_func1(unsigned short d2_out[D2_HEIGHT_OUT][D2_WIDTH_OUT][3], unsigned short d2_in[D2_HEIGHT_IN][D2_WIDTH_IN][3])
 {
-	int i_src_left = 0;
-	int i_src_right = 0;
-	int j_src_left = 0;
-	int j_src_right = 0;
-	int weight_wide = 0;
-	int weight_high = 0;
-	int val0 = 0;
-	int val1 = 0;
-	int val2 = 0;
-	int val3 = 0;
-	int temp0 = 0;
-	int temp1 = 0;
-	int grid_length_wide = (D2_WIDTH_IN << 10) / D2_WIDTH_OUT; //2048
-	int grid_length_high = (D2_HEIGHT_IN << 10) / D2_HEIGHT_OUT; //2048
-    int i = 0, j = 0;
-    for (int k = 0; k < D2_HEIGHT_OUT * D2_WIDTH_OUT; k++) {
+	unsigned int i_src_left = 0;
+	unsigned int i_src_right = 0;
+	unsigned int j_src_left = 0;
+	unsigned int j_src_right = 0;
+	unsigned int weight_wide = 0;
+	unsigned int weight_high = 0;
+	unsigned int val0 = 0;
+	unsigned int val1 = 0;
+	unsigned int val2 = 0;
+	unsigned int val3 = 0;
+	unsigned int temp0 = 0;
+	unsigned int temp1 = 0;
+	unsigned int grid_length_wide = (D2_WIDTH_IN << 10) / D2_WIDTH_OUT; //2048
+	unsigned int grid_length_high = (D2_HEIGHT_IN << 10) / D2_HEIGHT_OUT; //2048
+    unsigned int i = 0, j = 0;
+    for (unsigned int k = 0; k < D2_HEIGHT_OUT * D2_WIDTH_OUT; k++) {
         if (k % D2_WIDTH_OUT == 0 && k != 0) {
             i++;
         }

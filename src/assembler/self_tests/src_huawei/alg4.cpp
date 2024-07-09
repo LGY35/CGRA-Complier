@@ -22,17 +22,17 @@ static unsigned int tnr_div64(unsigned int in, unsigned int *out, unsigned int *
 			break;
 		}
 	}//TODO: check
-	// if (in <= 63)
-	// {
-	// 	*out = INV_TAB64[in];
-	// 	*shft = 0;
-	// }
-	// else
-	// {
-	// 	idx = in >> (nbit - 6);
-	// 	*out = INV_TAB64[idx];
-	// 	*shft = nbit - 6;
-	// }
+	if (in <= 63)
+	{
+		*out = INV_TAB64[in];
+		*shft = 0;
+	}
+	else
+	{
+		idx = in >> (nbit - 6);
+		*out = INV_TAB64[idx];
+		*shft = nbit - 6;
+	}
 	return 0;
 }
 void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int width, unsigned int height)
@@ -89,8 +89,8 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		// i = (k / (width/2+12)) % 6;
 		if(k != 0 && k % (width/2+12) == 0)
 			i++;
-		j = k % (width/2+12);//TODO: check
-		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+		j = k % (width/2+12);
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[6 * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
 	}
 	c = 0;i = 0;j = 0;
 	//subloop5底部边界填充
@@ -98,8 +98,8 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	{	
 		c = k / (6 * (width/2+12));
 		i = height / 2 + 6 + (k / (width/2+12)) % 6;
-		j = k % (width/2+12);//TODO: check
-		// d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_ce[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
+		j = k % (width/2+12);
+		d1_ce[i * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)] = d1_c[(height / 2 + 5) * (width / 2 + 12) + j + c * (width / 2 + 12) * (height / 2 + 12)];
 	}
 
 	unsigned int central_block[9][9] = { 0 };

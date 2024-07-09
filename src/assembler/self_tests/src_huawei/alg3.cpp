@@ -11,16 +11,16 @@
 #define PI			3.14159265358979323846
 unsigned char alg3_func_1(int bArray[MF_KERNEL_TS*MF_KERNEL_TS], int iFilterLen)
 {
-	int     i, j;            
+	int i = 0, j = 0;            
 	unsigned char bTemp; 
 
 	for (int k = 0; k < ((iFilterLen - 1) * (iFilterLen) / 2); k++) 
 	{//TODO: check
-	// 	if (bArray[i] > bArray[i + 1]) {
-	// 		bTemp = bArray[i];
-	// 		bArray[i] = bArray[i + 1];
-	// 		bArray[i + 1] = bTemp;
-	// 	}
+		// if (bArray[i] > bArray[i + 1]) {
+		// 	bTemp = bArray[i];
+		// 	bArray[i] = bArray[i + 1];
+		// 	bArray[i + 1] = bTemp;
+		// }
 		if (i < iFilterLen - j - 2) {
 			i++;
 		} else {
@@ -89,8 +89,8 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		// i = (k / (width/2+8)) % 4;
 		if(k % (width/2+8) == 0 && k != 0)
 			i++;
-		j = k % (width/2+8);//TODO: check
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+		j = k % (width/2+8);
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[4 * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
 	c = 0;i = 0;j = 0;
 	//subloop5底部边界填充
@@ -98,8 +98,8 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	{	
 		c = k / (4 * (width/2+8));
 		i = height / 2 + 4 + (k / (width/2+8)) % 4;
-		j = k % (width/2+8);//TODO: check
-		// d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_ce[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
+		j = k % (width/2+8);
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(height / 2 + 3) * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)];
 	}
 
 	int MF_pixel_block[9 * 9] = { 0 };
@@ -123,8 +123,8 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		if(k % (width/2) == 0 && k != 0)
 			i++;
 		j = k % (width/2);//TODO: check
-		// d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
-		// d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
+		d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
+		d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
 		// d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
 		// d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
 	}
