@@ -120,12 +120,19 @@ struct Node* handle_normal_phi(PHINode* phi)
             } else {
                 int j = 0;
                 for (j = 0; j < BB_map_Info[BB].next_BBs.size(); j++) {
+                    //add
+                    // BB_map_Info[BB].next_BBs[j].BB->print(errs());
+                    // printf("BB_map_Info[BB].next_BBs.size(): %zu\n",BB_map_Info[BB].next_BBs.size());
                     if (BB_map_Info[BB].next_BBs[j].BB == phi->getParent()) {
+                        
                         n = create_node(OP_ID::ID_SEL, get_V_name(phi), {BB_map_Info[BB].next_BBs[j].cond, find_or_create_V_node(val), n});
                         break;
                     }
                 }
                 if (j == BB_map_Info[BB].next_BBs.size()) {
+                    BB->print(errs());
+                    phi->print(errs());
+                    phi->getParent()->print(errs());
                     printf("error in pred and next BB\n");
                     exit(1);
                 }

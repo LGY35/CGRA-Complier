@@ -89,8 +89,8 @@ void alg1_func2(int out[GRID_H*GRID_W], unsigned short D1[D2_WIDTH_IN*D2_HEIGHT_
         v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) * (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
         v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) * (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
         //TODO: check 
-        // v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) * (D1[2 / (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
-        // v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
+        v1[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j)] << 10) * (D1[2 / (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
+        v2[i*D2_WIDTH_IN/2+j] = clip_bits((D1[2 * (i*D2_WIDTH_IN + j) + 1+ D2_WIDTH_IN] << 10) / (D1[2 * (i*D2_WIDTH_IN + j) + 1]), 0, 4096);//4095改成4096
     }
 	unsigned int index_w = 0;
 	unsigned int index_h = 0;

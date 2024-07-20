@@ -33,10 +33,10 @@ LDFLAGS = -L$(LLVM_LIB_PATH) $(LLVM_LIBS) -lpthread		#-lLLVM-15
 endif
 else
 ifeq ($(HOSTNAME), shore-82wm)
-CFLAGS = -m64 -Ofast -fno-rtti -I$(LLVM_INCLUDE_PATH) 
+CFLAGS = -m64 -g -Ofast -fno-rtti -I$(LLVM_INCLUDE_PATH) 
 LDFLAGS = -L$(LLVM_LIB_PATH) $(LLVM_LIBS) -lpthread		#-lLLVM
 else
-CFLAGS = -m64 -Ofast -fno-rtti -I$(LLVM_INCLUDE_PATH) 
+CFLAGS = -m64 -g -Ofast -fno-rtti -I$(LLVM_INCLUDE_PATH) 
 LDFLAGS = -L$(LLVM_LIB_PATH) $(LLVM_LIBS) -lpthread		#-lLLVM-15
 endif
 endif

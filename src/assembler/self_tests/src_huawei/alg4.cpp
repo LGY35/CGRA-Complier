@@ -14,6 +14,7 @@ static unsigned int tnr_div64(unsigned int in, unsigned int *out, unsigned int *
 		0x00AB, 0x00A7, 0x00A4, 0x00A1, 0x009E, 0x009B, 0x0098, 0x0095,
 		0x0092, 0x0090, 0x008D, 0x008B, 0x0089, 0x0086, 0x0084, 0x0082, 0x0080 };
 	unsigned short *INV_TAB64 = (unsigned short *)&INV_TAB64A[0];
+	//TODO: check
 	for (unsigned int i = 25; i >= 0; i--)  // ii = 1
 	{
 		if (((in >> i) & 0x01) != 0)
@@ -21,7 +22,8 @@ static unsigned int tnr_div64(unsigned int in, unsigned int *out, unsigned int *
 			nbit = i + 1;
 			break;
 		}
-	}//TODO: check
+	}
+	//TODO: check
 	if (in <= 63)
 	{
 		*out = INV_TAB64[in];
@@ -35,7 +37,8 @@ static unsigned int tnr_div64(unsigned int in, unsigned int *out, unsigned int *
 	}
 	return 0;
 }
-void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int width, unsigned int height)
+// void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int width, unsigned int height)
+void alg4_func(unsigned int * d1in, unsigned int  * d1out, unsigned int width, unsigned int height)
 {
 	unsigned int * d1_c = (unsigned int *)malloc((width / 2) * (height / 2) * 4 * sizeof(unsigned int));
 	unsigned int * d1_ce = (unsigned int*)malloc((width / 2 + 12) * (height / 2 + 12) * 4 * sizeof(unsigned int));
