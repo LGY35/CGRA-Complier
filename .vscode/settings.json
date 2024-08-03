@@ -71,6 +71,8 @@
         "queue": "cpp",
         "stack": "cpp",
         "__config": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "numbers": "cpp",
+        "span": "cpp"
     }
 }

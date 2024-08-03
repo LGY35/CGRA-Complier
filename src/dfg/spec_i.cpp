@@ -69,6 +69,7 @@ void replace_phi_out(struct Node* old_n, struct Node* new_n, struct Node* I_n = 
 
 Instruction* is_loop_phi(PHINode* phi)
 {
+    phi->print(errs());
     if (phi->getNumIncomingValues() != 2) {
         return nullptr;
     }
@@ -130,9 +131,9 @@ struct Node* handle_normal_phi(PHINode* phi)
                     }
                 }
                 if (j == BB_map_Info[BB].next_BBs.size()) {
-                    BB->print(errs());
-                    phi->print(errs());
-                    phi->getParent()->print(errs());
+                    // BB->print(errs());
+                    // phi->print(errs());
+                    // phi->getParent()->print(errs());
                     printf("error in pred and next BB\n");
                     exit(1);
                 }
