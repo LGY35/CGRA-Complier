@@ -14,6 +14,9 @@
 #include "output.h"
 #include "passes.h"
 
+#include <iostream>  
+#include <ostream>   
+
 using namespace llvm;
 
 const llvm::DataLayout* dl = nullptr; 
@@ -22,6 +25,15 @@ Loop* target_L = nullptr;
 
 cl::opt<std::string> input_filename(cl::Positional, cl::Required, cl::desc("<input file>"));
 static cl::opt<std::string> output_filename("o",cl::desc("Specify output filename"), cl::value_desc("filename"));
+
+// void debug_delay_queue() {
+//     std::cout << "Delay Queue:" << std::endl;
+//     for (Instruction* I : delay_I) {
+//         I->print(errs());
+//         std::cout << std::endl;
+//     }
+// }
+
 
 int main(int argc, char **argv)
 {
@@ -66,6 +78,7 @@ int main(int argc, char **argv)
                 }
                 visitBB(preheader, nullptr);            //遍历loop，生成operator
                 handle_delay_I();
+                // debug_delay_queue();
                 run_all_passes();                       //跑pass。消除无用节点，进行调度
                 output_dot(output_file + "_loop_" + itostr(loop_cnt) + ".dot"); // .dot文件内部就是调度图，route为节点，然后下面是边
                 clean_all_struct();

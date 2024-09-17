@@ -6,6 +6,8 @@
     OP_ABS   | \
     OP_NEG   | \
     OP_MUL   | \
+    OP_UDIV   | \
+    OP_SDIV   | \
     OP_MOD   | \
     OP_LT    | \
     OP_LE    | \
@@ -27,6 +29,8 @@
     OP_ABS  | \
     OP_NEG  | \
     OP_MUL  | \
+    OP_UDIV  | \
+    OP_SDIV  | \
     OP_MOD  | \
     OP_LT   | \
     OP_LE   | \

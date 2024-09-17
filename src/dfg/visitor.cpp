@@ -29,6 +29,11 @@ void visitBB(BasicBlock *BB, struct Node *cond)
     if (BB_map_Info[BB].visit_cnt < BB_map_Info[BB].num_preds) {
         return;
     }
+
+    // errs() << "Visiting BB: ";
+    // BB->print(errs());
+    // errs() << "\n";
+
     // visit instructions
     Instruction *I = NULL;
     std::vector<struct Node *> store_nodes;
@@ -53,6 +58,7 @@ void visitBB(BasicBlock *BB, struct Node *cond)
             }
         }
     }
+
     // visit next BB
     if (BranchInst *br = dyn_cast<BranchInst>(I)) {
         // handle store order

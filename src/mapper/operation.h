@@ -30,6 +30,9 @@
 // const
 #define OP_CONST    (1 << 21)
 
+#define OP_SDIV     (1 << 22)   //TODO:
+#define OP_UDIV     (1 << 23)   
+
 extern char* op_string[NUMS_OF_OP];
 
 int get_op(char* str);

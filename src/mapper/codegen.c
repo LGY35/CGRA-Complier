@@ -69,6 +69,8 @@ static char* OP_CODE[NUMS_OF_OP] = {
     "%sabs",
     "%sneg",
     "%smul",
+    "%sdiv",
+    "%udiv",
     "%smod",
     "%smac",
     // compare

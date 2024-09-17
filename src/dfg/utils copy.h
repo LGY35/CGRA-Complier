@@ -28,8 +28,6 @@ enum OP_ID {
     ID_MUL,
     ID_MOD,
     ID_MAC,
-    ID_UDIV,
-    ID_SDIV,
     // compare
     ID_LT,
     ID_LE,

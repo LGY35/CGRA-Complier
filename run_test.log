@@ -1,0 +1,51 @@
+make -C ./src/mapper/ -j8 mapper.out	  
+make[1]: Entering directory '/home/luguangyang/CGRA/src/mapper'
+gcc -m64 -g -lcgraph -lgvc -c bitmatrix.c -o bitmatrix.o
+gcc -m64 -g -lcgraph -lgvc -c CGRA.c -o CGRA.o
+gcc -m64 -g -lcgraph -lgvc -c codegen.c -o codegen.o
+gcc -m64 -g -lcgraph -lgvc -c dfg.c -o dfg.o
+gcc -m64 -g -lcgraph -lgvc -c operation.c -o operation.o
+gcc -m64 -g -lcgraph -lgvc -c readdot.c -o readdot.o
+gcc -m64 -g -lcgraph -lgvc -c utils.c -o utils.o
+gcc -m64 -g -lcgraph -lgvc -c VF3.c -o VF3.o
+gcc -m64 -g -lcgraph -lgvc -c ./main.c -o main.o
+gcc -m64 -g -lcgraph -lgvc -c ../../submodules/rpmalloc/rpmalloc/rpmalloc.c -o rpmalloc.o
+gcc -m64 -g -lcgraph -lgvc -c ../../submodules/argparse/argparse.c  -o argparse.o
+gcc -m64 -g -lcgraph -lgvc -c ../../submodules/cJSON/cJSON.c -o cjson.o
+gcc bitmatrix.o CGRA.o codegen.o dfg.o operation.o readdot.o utils.o VF3.o main.o rpmalloc.o argparse.o cjson.o -m64 -g -lcgraph -lgvc -o mapper.out
+make[1]: Leaving directory '/home/luguangyang/CGRA/src/mapper'
+make -C ./src/dfg/ -j6 dfg.out
+make[1]: Entering directory '/home/luguangyang/CGRA/src/dfg'
+g++ -m64 -g -I/usr/lib/llvm-16/include -c output.cpp -o output.o
+g++ -m64 -g -I/usr/lib/llvm-16/include -c passes.cpp -o passes.o
+g++ -m64 -g -I/usr/lib/llvm-16/include -c spec_i.cpp -o spec_i.o
+g++ -m64 -g -I/usr/lib/llvm-16/include -c utils.cpp -o utils.o
+g++ -m64 -g -I/usr/lib/llvm-16/include -c visitor.cpp -o visitor.o
+g++ -m64 -g -I/usr/lib/llvm-16/include -c ./main.cpp -o main.o
+g++ output.o passes.o spec_i.o utils.o visitor.o main.o -L/usr/lib/llvm-16/lib -lLLVM-16 -L/usr/lib/llvm-16/lib  -o dfg.out
+make[1]: Leaving directory '/home/luguangyang/CGRA/src/dfg'
+python3 ./test/dfg/run_test.py	
+Topology sort un-successful, there may be circle in the graph without reverse edge!../../src/dfg/dfg.out -o "./output/alg6" ./src/alg6.bc
+../../src/dfg/dfg.out -o "./output/alg5" ./src/alg5.bc
+../../src/dfg/dfg.out -o "./output/alg7" ./src/alg7.bc
+../../src/dfg/dfg.out -o "./output/alg4" ./src/alg4.bc
+FAILED
+../../src/dfg/dfg.out -o "./output/alg0" ./src/alg0.bc
+FAILED
+../../src/dfg/dfg.out -o "./output/alg3" ./src/alg3.bc
+FAILED
+../../src/dfg/dfg.out -o "./output/alg2" ./src/alg2.bc
+FAILED
+../../src/dfg/dfg.out -o "./output/alg1" ./src/alg1.bc
+alg6_loop_1.dot: FAILED
+alg5_loop_3.dot: FAILED
+alg5_loop_2.dot: FAILED
+alg5_loop_1.dot: FAILED
+alg6_loop_0.dot: FAILED
+alg1_loop_0.dot: FAILED
+alg6_loop_3.dot: FAILED
+alg5_loop_0.dot: FAILED
+alg5_loop_4.dot: FAILED
+alg6_loop_4.dot: FAILED
+alg6_loop_2.dot: FAILED
+makefile:5: recipe for target 'run_test' failed

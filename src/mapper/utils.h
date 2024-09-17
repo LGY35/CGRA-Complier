@@ -6,7 +6,8 @@
 #include <assert.h>
 
 #define IN_VALID (-1)
-#define NUMS_OF_OP 22
+//这个地方需要修改 否则导致数据越界
+#define NUMS_OF_OP 24
 
 #pragma region enumerations
 enum OP_ID {
@@ -16,6 +17,8 @@ enum OP_ID {
     ID_ABS,
     ID_NEG,
     ID_MUL,
+    ID_UDIV,
+    ID_SDIV,
     ID_MOD,
     ID_MAC,
     // compare

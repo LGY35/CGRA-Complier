@@ -4,6 +4,7 @@ using namespace llvm;
 
 bool handle_store_or_output(Instruction* I)
 {
+    // 处理存储或输出指令
     if (!un_condi_BB.count(I->getParent())) {
         struct Node* store = nullptr;
         struct Node* store_addr = nullptr;
@@ -16,12 +17,17 @@ bool handle_store_or_output(Instruction* I)
         }
         assert(store_addr);
         assert(store);
+
+        // 创建选择节点并更新连接
         struct Node* sel_addr = create_node(OP_ID::ID_SEL, get_V_name(I), {BB_map_Info[I->getParent()].cond, store_addr, get_dump_addr()});
+        
+        // 更新输入连接
         for (int i = 0; i < store->ins.size(); i++) {
             if (store->ins[i].node == store_addr) {
                 store->ins[i].node = sel_addr;
             }
         }
+        // 更新输出连接
         for (int i = 0; i < store_addr->outs.size(); i++) {
             if (store_addr->outs[i].node == store) {
                 sel_addr->outs.push_back(store_addr->outs[i]);
@@ -35,15 +41,17 @@ bool handle_store_or_output(Instruction* I)
 
 void replace_phi_out(struct Node* old_n, struct Node* new_n, struct Node* I_n = nullptr)
 {
+    // 检查旧节点和新节点的连接情况
     if (old_n->ins.size()) {
-        printf("target node has in edge, cannot be replaced");
+        printf("目标节点有输入连接，无法替换");
         exit(1);
     }
     if (new_n->outs.size()) {
-        printf("new node has out edge, cannot be replaced");
+        printf("新节点有输出连接，无法替换");
         exit(1);
     }
     
+    // 将旧节点的输出连接转移到新节点
     for (int i = 0; i < old_n->outs.size(); i++) {
         for (int j = 0; j < old_n->outs[i].node->ins.size(); j++) {
             if (old_n->outs[i].node->ins[j].node == old_n) {
@@ -54,6 +62,7 @@ void replace_phi_out(struct Node* old_n, struct Node* new_n, struct Node* I_n = 
     }
     old_n->outs.clear();
 
+    // 如果I_n不为空，将I_n的输出连接转移到新节点
     if (I_n != nullptr) {
         for (int i = 0; i < I_n->outs.size(); i++) {
             new_n->outs.push_back(I_n->outs[i]);
@@ -69,7 +78,7 @@ void replace_phi_out(struct Node* old_n, struct Node* new_n, struct Node* I_n = 
 
 Instruction* is_loop_phi(PHINode* phi)
 {
-    phi->print(errs());
+    // 检查phi节点是否为循环phi节点
     if (phi->getNumIncomingValues() != 2) {
         return nullptr;
     }
@@ -121,26 +130,19 @@ struct Node* handle_normal_phi(PHINode* phi)
             } else {
                 int j = 0;
                 for (j = 0; j < BB_map_Info[BB].next_BBs.size(); j++) {
-                    //add
-                    // BB_map_Info[BB].next_BBs[j].BB->print(errs());
-                    // printf("BB_map_Info[BB].next_BBs.size(): %zu\n",BB_map_Info[BB].next_BBs.size());
                     if (BB_map_Info[BB].next_BBs[j].BB == phi->getParent()) {
-                        
                         n = create_node(OP_ID::ID_SEL, get_V_name(phi), {BB_map_Info[BB].next_BBs[j].cond, find_or_create_V_node(val), n});
                         break;
                     }
                 }
                 if (j == BB_map_Info[BB].next_BBs.size()) {
-                    // BB->print(errs());
-                    // phi->print(errs());
-                    // phi->getParent()->print(errs());
-                    printf("error in pred and next BB\n");
+                    printf("前驱和下一个基本块出错\n");
                     exit(1);
                 }
             }
         }
     }
-    replace_phi_out(I_map_Info[phi].val,n);
+    replace_phi_out(I_map_Info[phi].val, n);
     return n;
 }
 
@@ -194,8 +196,10 @@ bool handle_phi(PHINode* phi)
     I_map_Info[phi].val = n;
     return false;
 }
+
 void handle_delay_I()
 {
+    // 处理延迟的指令
     while (!delay_I.empty()) {
         Instruction* I = delay_I.front();
         delay_I.pop_front();

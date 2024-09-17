@@ -6,6 +6,8 @@ char* op_string[NUMS_OF_OP] = {
     "abs",
     "neg",
     "mul",
+    "sdiv",
+    "udiv",
     "mod",
     "mac",
     "lt",

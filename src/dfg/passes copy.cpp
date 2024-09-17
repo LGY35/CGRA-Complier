@@ -249,8 +249,6 @@ bool is_same_node(struct Node* n_1, struct Node* n_2)
             // ops that operand order doesn't matter
             case OP_ID::ID_ADD:
             case OP_ID::ID_MUL:
-            case OP_ID::ID_UDIV:
-            case OP_ID::ID_SDIV:
             case OP_ID::ID_AND:
             case OP_ID::ID_OR:
             case OP_ID::ID_XOR:

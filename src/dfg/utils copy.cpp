@@ -28,8 +28,8 @@ const char* op_string[OP_ID::ID_CONST + 1] = {
     "store",
     "const",
     // //TODO:
-    "sdiv",
-    "udiv"
+    // "sdiv",
+    // "udiv"
 };
 
 #pragma region util functions
@@ -193,12 +193,33 @@ enum OP_ID get_I_OP_ID(Instruction* I)
         case Instruction::URem      :   return OP_ID::ID_MOD;
         case Instruction::SRem      :   return OP_ID::ID_MOD;
         // TODO: 
-        case Instruction::UDiv      :    return OP_ID::ID_UDIV;
-        case Instruction::SDiv      :    return OP_ID::ID_SDIV;
+        // case Instruction::SDiv      :    return OP_ID::ID_SDIV;
+        // case Instruction::UDiv      :    return OP_ID::ID_UDIV;
     }
     return OP_ID::IN_VALID;
 }
 
+// enum OP_ID get_I_OP_ID(Instruction* I)
+// {
+//     switch(I->getOpcode())
+//     {
+//         case Instruction::Select    :   return OP_ID::ID_SEL;
+//         case Instruction::Add       :   return OP_ID::ID_ADD;
+//         case Instruction::Sub       :   return OP_ID::ID_SUB;
+//         case Instruction::Shl       :   return OP_ID::ID_SHL;
+//         case Instruction::LShr      :   return OP_ID::ID_SHR;
+//         case Instruction::AShr      :   return OP_ID::ID_ASHR;
+//         case Instruction::And       :   return OP_ID::ID_AND;
+//         case Instruction::Or        :   return OP_ID::ID_OR;
+//         case Instruction::Xor       :   return OP_ID::ID_XOR;
+//         case Instruction::Mul       :   return OP_ID::ID_MUL;
+//         case Instruction::Load      :   return OP_ID::ID_LOAD;
+//         case Instruction::Store     :   return OP_ID::ID_STORE;
+//         case Instruction::URem      :   return OP_ID::ID_MOD;
+//         case Instruction::SRem      :   return OP_ID::ID_MOD;
+//     }
+//     return OP_ID::IN_VALID;
+// }
 
 struct Node* find_or_create_C_node(int c)
 {
@@ -292,6 +313,50 @@ struct Node* create_getelmptr_node(Instruction* I)
     return create_node(OP_ID::ID_ADD, get_V_name(I), {base, offset});
 }
 
+//TODO:
+// struct Node* create_getelmptr_node(Instruction* I)
+// {
+//     GetElementPtrInst* gep = dyn_cast<GetElementPtrInst>(I);
+//     gep_type_iterator GTI = gep_type_begin(I);
+//     struct Node* base = find_or_create_V_node(I->getOperand(0));
+//     struct Node* offset = nullptr;
+//     for(User::op_iterator i = gep->op_begin() + 1, e = gep->op_end(); i != e; ++i, ++GTI) {
+//         Type* t = GTI.getIndexedType();
+//         uint64_t tSize = dl->getTypeSizeInBits(t) / 8;
+//         if(ConstantInt *OpC = dyn_cast<ConstantInt>(*i)) {
+//             if(OpC->isZero()) {
+//                 continue;
+//             }
+//             if (offset) {
+//                 offset = create_node(OP_ID::ID_ADD, get_V_name(I), {offset, find_or_create_C_node(OpC->getValue().getLimitedValue() * tSize)});
+//             } else {
+//                 offset = find_or_create_C_node(OpC->getValue().getLimitedValue());
+//             }
+//         } else {
+//             struct Node* offset_tmp = find_or_create_C_node(tSize);
+//             Instruction *in = dyn_cast<Instruction>(*i);
+//             assert(I_map_Info.count(in) && I_map_Info[in].val);
+//             if (offset) {
+//                 offset = create_node(OP_ID::ID_ADD, get_V_name(I), {offset, create_node(OP_ID::ID_MUL, get_V_name(I), {I_map_Info[in].val, offset_tmp})});
+//             } else {
+//                 offset = create_node(OP_ID::ID_MUL, get_V_name(I), {I_map_Info[in].val, offset_tmp});
+//             }
+//         }
+//     }
+
+//     // Add division case
+//     if (ConstantInt *OpC = dyn_cast<ConstantInt>(gep->getOperand(1))) {
+//         struct Node* divisor = find_or_create_C_node(OpC->getValue().getLimitedValue());
+//         offset = create_node(OP_ID::ID_DIV, get_V_name(I), {offset, divisor});
+//     } else {
+//         Instruction *in = dyn_cast<Instruction>(gep->getOperand(1));
+//         assert(I_map_Info.count(in) && I_map_Info[in].val);
+//         struct Node* divisor = I_map_Info[in].val;
+//         offset = create_node(OP_ID::ID_DIV, get_V_name(I), {offset, divisor});
+//     }
+
+//     return create_node(OP_ID::ID_ADD, get_V_name(I), {base, offset});
+// }
 struct Node* create_call_node(CallInst* call)
 {
     struct Node* n = nullptr;
