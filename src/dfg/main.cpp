@@ -53,6 +53,7 @@ int main(int argc, char **argv)
     int loop_cnt = 0;
     for (Function &fn : *mod) {
         if (!fn.isDeclaration()) {
+            // fn.print(errs());
             //get the dominatortree of the current function
             DominatorTree* DT = new DominatorTree();         
             DT->recalculate(fn);

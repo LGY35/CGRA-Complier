@@ -37,6 +37,8 @@ void visitBB(BasicBlock *BB, struct Node *cond)
     // visit instructions
     Instruction *I = NULL;
     std::vector<struct Node *> store_nodes;
+    // BB->print(errs());
+    // printf("\n");
     for(Instruction & i : *BB) {
         I = &i;
         if (I->getOpcode() == Instruction::Br || I->getOpcode() == Instruction::Switch) {
@@ -49,6 +51,7 @@ void visitBB(BasicBlock *BB, struct Node *cond)
             store_nodes.push_back(I_map_Info[I].val);
             delay_I.push_back(I);
         } else {
+            // I->print(errs());
             I_map_Info[I].val = find_or_create_I_node(I);
             if (is_output(I)) {
                 I_map_Info[I].output_addr = get_output_addr(I);

@@ -134,13 +134,102 @@ void alg2_func(unsigned int* d1in, unsigned int* d1out, unsigned int width, unsi
 		i = 4 + (k / (width/2)) % 4;
 		j = 4 + k % (width/2);		
 		result = 0;
-		int m = 0,n = 0;
-		for(int inner_k = 0; inner_k < 81;inner_k++)
-		{
-			m = inner_k / 9 - 4;
-            n = inner_k % 9 - 4;
-            result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
-		}
+		// int m = 0,n = 0;
+		// for(int inner_k = 0; inner_k < 81;inner_k++)
+		// {
+		// 	m = inner_k / 9 - 4;
+        //     n = inner_k % 9 - 4;
+        //     result += d1_ce[(i + m) * (width / 2 + 8) + j + n + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[m + 4][n + 4];
+		// }
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][0];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][1];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][2];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][3];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][4];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][5];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][6];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][7];
+		result += d1_ce[(i - 4) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[0][8];
+
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][0];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][1];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][2];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][3];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][4];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][5];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][6];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][7];
+		result += d1_ce[(i - 3) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[1][8];
+
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][0];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][1];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][2];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][3];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][4];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][5];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][6];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][7];
+		result += d1_ce[(i - 2) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[2][8];
+
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][0];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][1];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][2];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][3];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][4];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][5];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][6];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][7];
+		result += d1_ce[(i - 1) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[3][8];
+
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][0];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][1];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][2];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][3];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][4];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][5];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][6];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][7];
+		result += d1_ce[(i - 0) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[4][8];
+
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][0];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][1];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][2];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][3];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][4];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][5];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][6];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][7];
+		result += d1_ce[(i + 1) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[5][8];
+
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][0];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][1];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][2];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][3];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][4];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][5];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][6];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][7];
+		result += d1_ce[(i + 2) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[6][8];
+
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][0];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][1];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][2];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][3];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][4];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][5];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][6];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][7];
+		result += d1_ce[(i + 3) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[7][8];
+
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j - 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][0];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j - 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][1];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j - 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][2];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j - 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][3];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j + 0 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][4];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j + 1 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][5];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j + 2 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][6];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j + 3 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][7];
+		result += d1_ce[(i + 4) * (width / 2 + 8) + j + 4 + c * (width / 2 + 8) * (height / 2 + 8)] * kernel[8][8];
 		//TODO: check
 		d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = result >> 10;
 	}

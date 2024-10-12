@@ -186,6 +186,8 @@ bool handle_phi(PHINode* phi)
 {
     struct Node* n = nullptr;
     if (Instruction* I = is_loop_phi(phi)) {
+        I->print(errs());
+        phi->print(errs());
         if (!I_map_Info[I].val->name.compare(0, 7, "tmp_phi")) {
             return true;
         }
