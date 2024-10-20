@@ -128,17 +128,10 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	for (int k = 0; k < 4 * (height / 2) * (width/2); k++)
 	{	
 		if(k % ((height / 2) * (width/2)) == 0 && k != 0)
-		{
 			c++;
-			i = 6; // 重置 i 的初始值
-		}
 		if(k % (width/2) == 0 && k != 0)
-		{
 			i++;
-			j = 6; // 重置 j 的初始值
-		}
-		// 更新 j 的值
-   		j = 6 + (k % (width / 2));
+		j = k % (width/2);
 
 		// y = -2, x = -2
 		central_block[0][0] = d1_ce[(i - 2) * (width / 2 + 12) + j - 2 + c * (width / 2 + 12) * (height / 2 + 12)];
@@ -5741,124 +5734,143 @@ void alg4_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		}
 
 
+		// for (int m = -4; m <= 4; m++)
+		// {
+		// 	for (int n = -4; n <= 4; n++)
+		// 	{
+
+		// 		if (m == 0 && n == 0)
+		// 			continue;
+
+		// 		for (int y = -2; y <= 2; y++)
+		// 			for (int x = -2; x <= 2; x++)
+		// 				ref_block[y + 2][x + 2] = d1_ce[(i + m + y) * (width / 2 + 12) + j + n + x + c * (width / 2 + 12) * (height / 2 + 12)];
+
+		// 		sad = 0;
+		// 		for (int y = -2; y <= 2; y++)
+		// 			for (int x = -2; x <= 2; x++)
+		// 				sad += abs(central_block[y + 2][x + 2] - ref_block[y + 2][x + 2]);
+		// 		weight = (sad > sad_thr) ? 0 : (sad_thr - sad);
+		// 		weight_sum += weight;
+		// 		filter_sum += weight * ref_block[2][2];
+		// 	}
+		// }
+
 		weight_sum += sad_thr;
 		filter_sum += sad_thr * central_block[2][2];
 
-		// tnr_div64(weight_sum, &div_coef, &shft);	
-		if (((weight_sum >> 25) & 0x01) != 0)
-		{
-			nbit = 26;
-		}
-		else if (((weight_sum >> 24) & 0x01) != 0)
-		{
-			nbit = 25;
-		}
-		else if (((weight_sum >> 23) & 0x01) != 0)
-		{
-			nbit = 24;
-		}
-		else if (((weight_sum >> 22) & 0x01) != 0)
-		{
-			nbit = 23;
-		}
-		else if (((weight_sum >> 21) & 0x01) != 0)
-		{
-			nbit = 22;
-		}
-		else if (((weight_sum >> 20) & 0x01) != 0)
-		{
-			nbit = 21;
-		}
-		else if (((weight_sum >> 19) & 0x01) != 0)
-		{
-			nbit = 20;
-		}
-		else if (((weight_sum >> 18) & 0x01) != 0)
-		{
-			nbit = 19;
-		}
-		else if (((weight_sum >> 17) & 0x01) != 0)
-		{
-			nbit = 18;
-		}
-		else if (((weight_sum >> 16) & 0x01) != 0)
-		{
-			nbit = 17;
-		}
-		else if (((weight_sum >> 15) & 0x01) != 0)
-		{
-			nbit = 16;
-		}
-		else if (((weight_sum >> 14) & 0x01) != 0)
-		{
-			nbit = 15;
-		}
-		else if (((weight_sum >> 13) & 0x01) != 0)
-		{
-			nbit = 14;
-		}
-		else if (((weight_sum >> 12) & 0x01) != 0)
-		{
-			nbit = 13;
-		}
-		else if (((weight_sum >> 11) & 0x01) != 0)
-		{
-			nbit = 12;
-		}
-		else if (((weight_sum >> 10) & 0x01) != 0)
-		{
-			nbit = 11;
-		}
-		else if (((weight_sum >> 9) & 0x01) != 0)
-		{
-			nbit = 10;
-		}
-		else if (((weight_sum >> 8) & 0x01) != 0)
-		{
-			nbit = 9;
-		}
-		else if (((weight_sum >> 7) & 0x01) != 0)
-		{
-			nbit = 8;
-		}
-		else if (((weight_sum >> 6) & 0x01) != 0)
-		{
-			nbit = 7;
-		}
-		else if (((weight_sum >> 5) & 0x01) != 0)
-		{
-			nbit = 6;
-		}
-		else if (((weight_sum >> 4) & 0x01) != 0)
-		{
-			nbit = 5;
-		}
-		else if (((weight_sum >> 3) & 0x01) != 0)
-		{
-			nbit = 4;
-		}
-		else if (((weight_sum >> 2) & 0x01) != 0)
-		{
-			nbit = 3;
-		}
-		else if (((weight_sum >> 1) & 0x01) != 0)
-		{
-			nbit = 2;
-		}
-		else if (((weight_sum >> 0) & 0x01) != 0)
-		{
-			nbit = 1;
-		}
-		else
-		{
-			nbit = 0;
-		}
 
-		// if (weight_sum == 0) {
-		// 	nbit = 0;
-		// } else {
-		// 	nbit = 32 - __builtin_clz(weight_sum);  // 使用 GCC 或 Clang 的内置函数
+		// // tnr_div64(weight_sum, &div_coef, &shft);	
+		// if (((weight_sum >> 25) & 0x01) != 0)
+		// {
+		// 	nbit = 26;
 		// }
+		// else if (((weight_sum >> 24) & 0x01) != 0)
+		// {
+		// 	nbit = 25;
+		// }
+		// else if (((weight_sum >> 23) & 0x01) != 0)
+		// {
+		// 	nbit = 24;
+		// }
+		// else if (((weight_sum >> 22) & 0x01) != 0)
+		// {
+		// 	nbit = 23;
+		// }
+		// else if (((weight_sum >> 21) & 0x01) != 0)
+		// {
+		// 	nbit = 22;
+		// }
+		// else if (((weight_sum >> 20) & 0x01) != 0)
+		// {
+		// 	nbit = 21;
+		// }
+		// else if (((weight_sum >> 19) & 0x01) != 0)
+		// {
+		// 	nbit = 20;
+		// }
+		// else if (((weight_sum >> 18) & 0x01) != 0)
+		// {
+		// 	nbit = 19;
+		// }
+		// else if (((weight_sum >> 17) & 0x01) != 0)
+		// {
+		// 	nbit = 18;
+		// }
+		// else if (((weight_sum >> 16) & 0x01) != 0)
+		// {
+		// 	nbit = 17;
+		// }
+		// else if (((weight_sum >> 15) & 0x01) != 0)
+		// {
+		// 	nbit = 16;
+		// }
+		// else if (((weight_sum >> 14) & 0x01) != 0)
+		// {
+		// 	nbit = 15;
+		// }
+		// else if (((weight_sum >> 13) & 0x01) != 0)
+		// {
+		// 	nbit = 14;
+		// }
+		// else if (((weight_sum >> 12) & 0x01) != 0)
+		// {
+		// 	nbit = 13;
+		// }
+		// else if (((weight_sum >> 11) & 0x01) != 0)
+		// {
+		// 	nbit = 12;
+		// }
+		// else if (((weight_sum >> 10) & 0x01) != 0)
+		// {
+		// 	nbit = 11;
+		// }
+		// else if (((weight_sum >> 9) & 0x01) != 0)
+		// {
+		// 	nbit = 10;
+		// }
+		// else if (((weight_sum >> 8) & 0x01) != 0)
+		// {
+		// 	nbit = 9;
+		// }
+		// else if (((weight_sum >> 7) & 0x01) != 0)
+		// {
+		// 	nbit = 8;
+		// }
+		// else if (((weight_sum >> 6) & 0x01) != 0)
+		// {
+		// 	nbit = 7;
+		// }
+		// else if (((weight_sum >> 5) & 0x01) != 0)
+		// {
+		// 	nbit = 6;
+		// }
+		// else if (((weight_sum >> 4) & 0x01) != 0)
+		// {
+		// 	nbit = 5;
+		// }
+		// else if (((weight_sum >> 3) & 0x01) != 0)
+		// {
+		// 	nbit = 4;
+		// }
+		// else if (((weight_sum >> 2) & 0x01) != 0)
+		// {
+		// 	nbit = 3;
+		// }
+		// else if (((weight_sum >> 1) & 0x01) != 0)
+		// {
+		// 	nbit = 2;
+		// }
+		// else if (((weight_sum >> 0) & 0x01) != 0)
+		// {
+		// 	nbit = 1;
+		// }
+
+		if (weight_sum == 0) {
+			nbit = 0;
+		} else {
+			nbit = 32 - __builtin_clz(weight_sum);  // 使用 GCC 或 Clang 的内置函数
+		}
 
 		if (weight_sum <= 63)
 		{
