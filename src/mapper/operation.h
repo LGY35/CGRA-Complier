@@ -29,9 +29,9 @@
 #define OP_STORE    (1 << 20)
 // const
 #define OP_CONST    (1 << 21)
-
-#define OP_SDIV     (1 << 22)   //TODO:
-#define OP_UDIV     (1 << 23)   
+// 顺序需要修改
+#define OP_UDIV     (1 << 22)   
+#define OP_SDIV     (1 << 23)   
 
 extern char* op_string[NUMS_OF_OP];
 

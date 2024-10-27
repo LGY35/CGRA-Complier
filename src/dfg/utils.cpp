@@ -3,8 +3,8 @@
 using namespace llvm;
 
 struct Node* dump_addr = nullptr;
-int OP_cnt[OP_ID::ID_CONST + 1] = {0};
-const char* op_string[OP_ID::ID_CONST + 1] = {
+int OP_cnt[OP_ID::ID_CONST + 3] = {0};
+const char* op_string[OP_ID::ID_CONST + 3] = {
     "add",
     "sub",
     "abs",
@@ -27,9 +27,9 @@ const char* op_string[OP_ID::ID_CONST + 1] = {
     "load",
     "store",
     "const",
-    // //TODO:
-    "sdiv",
-    "udiv"
+    // 顺序需要修改
+    "udiv",
+    "sdiv"
 };
 
 #pragma region util functions

@@ -17,8 +17,6 @@ enum OP_ID {
     ID_ABS,
     ID_NEG,
     ID_MUL,
-    ID_UDIV,
-    ID_SDIV,
     ID_MOD,
     ID_MAC,
     // compare
@@ -41,7 +39,10 @@ enum OP_ID {
     ID_LOAD,
     ID_STORE,
     // const
-    ID_CONST
+    ID_CONST,
+    // 顺序需要修改
+    ID_UDIV,
+    ID_SDIV
 };
 
 enum Edge_Attr {

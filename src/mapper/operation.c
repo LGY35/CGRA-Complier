@@ -6,8 +6,6 @@ char* op_string[NUMS_OF_OP] = {
     "abs",
     "neg",
     "mul",
-    "sdiv",
-    "udiv",
     "mod",
     "mac",
     "lt",
@@ -24,7 +22,10 @@ char* op_string[NUMS_OF_OP] = {
     "rout",
     "load",
     "store",
-    "const"
+    "const",
+    // 顺序需要修改
+    "udiv",
+    "sdiv"
 };
 
 int get_op(char* str) 

@@ -28,8 +28,6 @@ enum OP_ID {
     ID_MUL,
     ID_MOD,
     ID_MAC,
-    ID_UDIV,
-    ID_SDIV,
     // compare
     ID_LT,
     ID_LE,
@@ -50,7 +48,10 @@ enum OP_ID {
     ID_LOAD,
     ID_STORE,
     // const
-    ID_CONST
+    ID_CONST,
+    //顺序需要修改
+    ID_UDIV,
+    ID_SDIV
 };
 struct Node;
 struct In_Conn {
@@ -105,7 +106,8 @@ extern std::map<int, struct Node*> C_map_Node;
 extern std::map<llvm::BasicBlock*, BB_Info> BB_map_Info;
 extern std::vector<struct Node*> all_nodes;
 extern std::vector<struct Node*> store_stack;
-extern const char* op_string[OP_ID::ID_CONST + 1];
+// OP_ID::ID_CONST 表示从 OP_ID 枚举类型中访问 ID_CONST 的值。
+extern const char* op_string[OP_ID::ID_CONST + 3];
 
 std::string get_V_name(llvm::Value* v);
 void add_out_edge(struct Node* from, struct Node* to, enum Edge_Attr attr = Edge_Attr::ATTR_IN_VALID);
