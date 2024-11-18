@@ -15,13 +15,15 @@
 ########################
 
 //Value Computed by CMake
-CGRA_Simulator_BINARY_DIR:STATIC=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+#CGRA_Simulator_BINARY_DIR:STATIC=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+CGRA_Simulator_BINARY_DIR:STATIC=/home/luguangyang/CGRA/src/simulator/build
 
 //Value Computed by CMake
 CGRA_Simulator_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-CGRA_Simulator_SOURCE_DIR:STATIC=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator
+#CGRA_Simulator_SOURCE_DIR:STATIC=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator
+CGRA_Simulator_SOURCE_DIR:STATIC=/home/luguangyang/CGRA/src/simulator/build
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -222,7 +224,8 @@ CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
-CMAKE_CACHEFILE_DIR:INTERNAL=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+#CMAKE_CACHEFILE_DIR:INTERNAL=/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+CMAKE_CACHEFILE_DIR:INTERNAL=/home/luguangyang/CGRA/src/simulator/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache

@@ -21,15 +21,21 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 	int iFilterLen = 9 * 9;
 	unsigned char bTemp;
 	 int i, j;
+
+	if (d1_c == NULL || d1_ce == NULL) {
+    // 处理内存分配失败的情况
+    printf("Memory allocation failed!\n");
+		return;
+	}
 	for ( int k = 0; k < (height*width/4); k++)// ii = 1
 	{
 		if(k % (width/2) == 0 && k != 0)
 			i++;
 		j = k % (width/2);
-		d1_c[i * width / 2 + j] = d1in[i * 2 * width + j * 2];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
-		d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
+		d1_c[i * (width/2) + j] = d1in[i * 2 * width + j * 2];
+		d1_c[i * (width/2) + j + (width / 2) * (height / 2)] = d1in[i * 2 * width + j * 2 + 1];
+		d1_c[i * (width/2) + j + (width / 2) * (height / 2) * 2] = d1in[(i * 2 + 1) * width + j * 2];
+		d1_c[i * (width/2) + j + (width / 2) * (height / 2) * 3] = d1in[(i * 2 + 1) * width + j * 2 + 1];
 	}
 
 	 int c = 0;i = 0;j = 0;
@@ -43,7 +49,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		if(k % (width/2) == 0 && k != 0)
 			i++;
 		j = k % (width / 2);
-		d1_ce[(4 + i) * (width / 2 + 8) + 4 + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[i *  width / 2 + j + c * (width / 2) * (height / 2)];
+		d1_ce[(4 + i) * (width / 2 + 8) + 4 + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[i *  (width/2) + j + c * (width / 2) * (height / 2)];
 	}
 	c = 0;i = 0;j = 0;
 	//subloop2左侧边界填充
@@ -57,7 +63,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		if(k % 4 == 0 && k != 0)
 			i++;
 		j = k % 4;
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  width / 2 + c * (width / 2) * (height / 2)];
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  (width/2) + c * (width / 2) * (height / 2)];
 	}
 	c = 0;i = 0;j = 0;
 	//subloop3右侧边界填充
@@ -71,7 +77,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		if(k % 4 == 0 && k != 0)
 			i++;
 		j = width / 2 + 4 + k % 4;
-		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  width / 2 + width / 2 - 1 + c * (width / 2) * (height / 2)];
+		d1_ce[i * (width / 2 + 8) + j + c * (width / 2 + 8) * (height / 2 + 8)] = d1_c[(i - 4) *  (width/2) + (width/2) - 1 + c * (width / 2) * (height / 2)];
 	}
 	c = 0;i = 0;j = 0;
 	//subloop4顶部边界填充
@@ -294,7 +300,7 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		// 中值计算部分
 		bTemp = bArray[(iFilterLen + 1) / 2];
 
-		d1_c[(i - 4) * width / 2 + (j - 4) + c * (width / 2) * (height / 2)] = bTemp;
+		d1_c[(i - 4) * (width/2) + (j - 4) + c * (width / 2) * (height / 2)] = bTemp;
 
 	}
 	
@@ -305,10 +311,10 @@ void alg3_func(unsigned short * d1in, unsigned short  * d1out, unsigned int widt
 		if(k % (width/2) == 0 && k != 0)
 			i++;
 		j = k % (width/2);//TODO: check
-		d1out[i * 2 * width + j * 2] = d1_c[i * width / 2 + j];
-		d1out[i * 2 * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2)];
-		d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 2];
-		d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * width / 2 + j + (width / 2) * (height / 2) * 3];
+		d1out[i * 2 * width + j * 2] = d1_c[i * (width/2) + j];
+		d1out[i * 2 * width + j * 2 + 1] = d1_c[i * (width/2) + j + (width / 2) * (height / 2)];
+		d1out[(i * 2 + 1) * width + j * 2] = d1_c[i * (width/2) + j + (width / 2) * (height / 2) * 2];
+		d1out[(i * 2 + 1) * width + j * 2 + 1] = d1_c[i * (width/2) + j + (width / 2) * (height / 2) * 3];
 	}
 	free(d1_c);
 	free(d1_ce);

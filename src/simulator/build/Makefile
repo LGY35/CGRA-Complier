@@ -57,10 +57,12 @@ RM = /usr/local/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator
+# CMAKE_SOURCE_DIR = /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator
+CMAKE_SOURCE_DIR = /home/luguangyang/CGRA/src/simulator/build
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+# CMAKE_BINARY_DIR = /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build
+CMAKE_BINARY_DIR = /home/luguangyang/CGRA/src/simulator/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,10 +89,15 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/CMakeFiles /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luguangyang/CGRA/src/simulator/build/CMakeFiles /home/luguangyang/CGRA/src/simulator/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luguangyang/CGRA/src/simulator/build/CMakeFiles 0
 .PHONY : all
+# all: cmake_check_build_system
+# 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/CMakeFiles /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build//CMakeFiles/progress.marks
+# 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+# 	$(CMAKE_COMMAND) -E cmake_progress_start /home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/CMakeFiles 0
+# .PHONY : all
 
 # The main clean target
 clean:

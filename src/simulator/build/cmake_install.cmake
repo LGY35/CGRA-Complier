@@ -50,5 +50,6 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/luguangyang/CGRA/src/simulator/build/${CMAKE_INSTALL_MANIFEST}"
+# file(WRITE "/home/dkx/Downloads/CGRA_ToolChain_1103_未封装有PEcc/CGRA_ToolChain_1103/CGRA_Simulator/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
