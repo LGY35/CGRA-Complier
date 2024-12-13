@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/CGRA_Simulator",
+            "args": [
+                "../dst_pic/alg5_func_output.raw",
+                "11 ",
+                "../LOG/cgrar_debug_log.txt",
+                "../LOG/performance_reference.txt",
+                "0",
+                "../CompilerOut/alg5_loop_0.txt",
+                "../CompilerOut/alg5_loop_1.txt",
+                "../CompilerOut/alg5_loop_2.txt",
+                "../CompilerOut/alg5_loop_3.txt",
+                "../CompilerOut/alg5_loop_4.txt",
+                "../CompilerOut/alg1_loop_0.txt",
+                " ../CompilerOut/alg6_loop_0.txt",
+                "../CompilerOut/alg6_loop_1.txt",
+                "../CompilerOut/alg6_loop_2.txt",
+                "../CompilerOut/alg6_loop_3.txt",
+                "../CompilerOut/alg6_loop_4.txt"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+        
+    ]
+}

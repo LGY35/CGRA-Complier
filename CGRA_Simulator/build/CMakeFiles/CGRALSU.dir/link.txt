@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCGRALSU.a CMakeFiles/CGRALSU.dir/src/LSU.cc.o
+/usr/bin/ranlib libCGRALSU.a

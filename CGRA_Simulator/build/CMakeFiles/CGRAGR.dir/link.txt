@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCGRAGR.a CMakeFiles/CGRAGR.dir/src/GR.cc.o
+/usr/bin/ranlib libCGRAGR.a

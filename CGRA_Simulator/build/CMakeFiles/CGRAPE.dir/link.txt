@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCGRAPE.a CMakeFiles/CGRAPE.dir/src/PE.cc.o
+/usr/bin/ranlib libCGRAPE.a

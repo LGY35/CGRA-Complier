@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCGRANLParam_BF.a CMakeFiles/CGRANLParam_BF.dir/src/NLParam_BF.cc.o
+/usr/bin/ranlib libCGRANLParam_BF.a
